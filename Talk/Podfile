@@ -13,5 +13,6 @@ pod 'Firebase/Analytics'
 # https://firebase.google.com/docs/ios/setup#available-pods
 pod 'Firebase/RemoteConfig'
 pod 'TextFieldEffects'
-
+pod 'Firebase/Database'
+pod 'Firebase/Auth'
 end

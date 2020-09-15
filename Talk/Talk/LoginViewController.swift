@@ -11,7 +11,7 @@ import Firebase
 
 class LoginViewController: UIViewController {
 
-    @IBOutlet weak var signIn: UIButton!
+    @IBOutlet weak var signUp: UIButton!
     @IBOutlet weak var loginButton: UIButton!
     //원격으로 리모트해서 색을 가져옴
     let remoteConfig = RemoteConfig.remoteConfig()
@@ -32,10 +32,18 @@ class LoginViewController: UIViewController {
         
         statusBar.backgroundColor = UIColor(hex: color)
         loginButton.backgroundColor = UIColor(hex: color)
-        signIn.backgroundColor = UIColor(hex: color)
+        signUp.backgroundColor = UIColor(hex: color)
         
-
+        
+        //signUp 버튼이 클릭되면 함수가 실행되는데 실행되는 함수는 스토리보드를 띄우는 함수, 모달로 뜨게된다
+        signUp.addTarget(self, action: #selector(presentSignUp), for: .touchUpInside)
         // Do any additional setup after loading the view.
+    }
+    
+    @objc func presentSignUp(){
+        let view = self.storyboard?.instantiateViewController(withIdentifier: "SignUpViewController") as! SignUpViewController
+        
+        self.present(view, animated: true, completion: nil)
     }
     
 

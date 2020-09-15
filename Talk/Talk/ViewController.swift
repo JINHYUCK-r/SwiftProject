@@ -57,6 +57,7 @@ class ViewController: UIViewController {
         let caps = remoteConfig["splash_message_caps"].boolValue
         let message = remoteConfig["splash_message"].stringValue
         
+        //firebase에서 caps의 기본값이 true면 앱이 꺼지는 if 문이 실행되어버림
         if(caps){
             let alert = UIAlertController(title: "금지사항", message: message, preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: { (action) in
@@ -64,6 +65,10 @@ class ViewController: UIViewController {
                 //경고창을 확인 누르면 앱이 꺼지게 됨
             }))
             self.present(alert, animated: true, completion: nil)
+        }else{
+            //연결하고자하는 컨트롤러뷰의 아이텐셜 아이값을 입력하면 모달형식으로 화면이 뜬다
+            let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+            self.present(loginVC, animated: false, completion: nil)
         }
         self.view.backgroundColor = UIColor(hex: color!)
            }

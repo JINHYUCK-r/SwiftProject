@@ -89,30 +89,12 @@ class SignUpViewController: UIViewController,UINavigationControllerDelegate,UIIm
                  imageRef.downloadURL(completion: { (url, err) in
 
                      Database.database().reference().child("users").child(uid!).setValue(["name":self.name.text,"profileImageUrl":url?.absoluteString])
+                    
+                    self.dismiss(animated: true, completion: nil)
 
                  })
 
              })
-
-
-                /*
-                let image = self.imageView.image?.jpegData(compressionQuality: 0.1)
-                
-                Storage.storage().reference().child("userImage").child(uid).putData(image!, metadata: nil) { (data, err) in
-                    if let err = err{
-                        print(err)
-                    }else{
-                        let
-                    }
-                }
-                
-                Database.database().reference().child("users").child(uid).setValue(["name":self.name.text!])}
- 
-                else  {
-                return print(err!)
-            }
-              */
-              
                
            }
            

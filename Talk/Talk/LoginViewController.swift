@@ -48,7 +48,7 @@ class LoginViewController: UIViewController {
         //사용자값이 있다면 화면을 이동하게 됨
         Auth.auth().addStateDidChangeListener { (auth, user) in
             if(user != nil){
-                let view = self.storyboard?.instantiateViewController(identifier: "MainViewController") as! MainViewController
+                let view = self.storyboard?.instantiateViewController(identifier: "MainViewTabBarController") as! UITabBarController
                 self.present(view, animated: true, completion: nil)
             }
         }

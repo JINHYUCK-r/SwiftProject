@@ -15,6 +15,7 @@
 		3C3BB61F250F5B72007986D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C3BB61D250F5B72007986D7 /* LaunchScreen.storyboard */; };
 		3C3BB627250F5D2F007986D7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C3BB626250F5D2F007986D7 /* GoogleService-Info.plist */; };
 		3C3BB629250F6799007986D7 /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C3BB628250F6799007986D7 /* RemoteConfigDefaults.plist */; };
+		3C48DDCD2511E41D00F9F652 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C48DDCC2511E41D00F9F652 /* MainViewController.swift */; };
 		3C4C75222510888700363D18 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4C75212510888700363D18 /* LoginViewController.swift */; };
 		3C4C752425109A1F00363D18 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4C752325109A1F00363D18 /* SignUpViewController.swift */; };
 		D0B7761A36FE6CF3E568497D /* Pods_Talk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06329CBCF006886E86BD80D1 /* Pods_Talk.framework */; };
@@ -33,6 +34,7 @@
 		3C3BB620250F5B72007986D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3C3BB626250F5D2F007986D7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3C3BB628250F6799007986D7 /* RemoteConfigDefaults.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RemoteConfigDefaults.plist; sourceTree = "<group>"; };
+		3C48DDCC2511E41D00F9F652 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		3C4C75212510888700363D18 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3C4C752325109A1F00363D18 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		3C4C75252510A91500363D18 /* Talk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Talk.entitlements; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				3C3BB612250F5B70007986D7 /* AppDelegate.swift */,
 				3C3BB614250F5B70007986D7 /* SceneDelegate.swift */,
 				3C3BB618250F5B70007986D7 /* Main.storyboard */,
+				3C48DDCC2511E41D00F9F652 /* MainViewController.swift */,
 				3C3BB616250F5B70007986D7 /* ViewController.swift */,
 				3C4C75212510888700363D18 /* LoginViewController.swift */,
 				3C4C752325109A1F00363D18 /* SignUpViewController.swift */,
@@ -225,6 +228,7 @@
 				3C4C75222510888700363D18 /* LoginViewController.swift in Sources */,
 				3C3BB617250F5B70007986D7 /* ViewController.swift in Sources */,
 				3C3BB613250F5B70007986D7 /* AppDelegate.swift in Sources */,
+				3C48DDCD2511E41D00F9F652 /* MainViewController.swift in Sources */,
 				3C3BB615250F5B70007986D7 /* SceneDelegate.swift in Sources */,
 				3C4C752425109A1F00363D18 /* SignUpViewController.swift in Sources */,
 			);

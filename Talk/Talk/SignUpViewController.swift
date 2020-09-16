@@ -46,13 +46,21 @@ class SignUpViewController: UIViewController {
         cancel.addTarget(self, action: #selector(cancelEvent), for: .touchUpInside)
     }
     
-    @objc func signUpEvent(){
-        Auth.auth().createUser(withEmail: email.text!, password: password.text!) { (user, err)  in
-            let uid = user?.user.uid
-            Database.database().reference().child("users").child(uid!).setValue(["name":self.name.text!])
-            print("에러",err!)
-        }
-    }
+    //회원가입정보 firebase에 등록하는 메소드
+    @objc  func signUpEvent(){
+           Auth.auth().createUser(withEmail: email.text!, password: password.text!) { (user, err) in
+            if let uid = user?.user.uid{
+                Database.database().reference().child("users").child(uid).setValue(["name":self.name.text!])}
+                else{
+                return print(err!)
+            }
+               
+              
+               
+           }
+           
+           
+       }
     @objc func cancelEvent(){
         self.dismiss(animated: true, completion: nil)
     }

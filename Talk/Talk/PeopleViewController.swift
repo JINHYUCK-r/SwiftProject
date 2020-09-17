@@ -29,7 +29,7 @@ class PeopleViewController: UIViewController,UITableViewDataSource,UITableViewDe
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (m) in
-            m.top.equalTo(view).offset(20)
+            m.top.equalTo(view)
             m.bottom.left.right.equalTo(view)
         }
 
@@ -66,7 +66,7 @@ class PeopleViewController: UIViewController,UITableViewDataSource,UITableViewDe
         cell.addSubview(imageView)
         imageView.snp.makeConstraints { (m) in
             m.centerY.equalTo(cell)
-            m.left.equalTo(cell)
+            m.left.equalTo(cell).offset(10)
             m.height.width.equalTo(50)
         }
        //프로필 이미지가 저장되어 있는 url주소를 받아서와 이미지 데이터로 보여줌
@@ -83,7 +83,7 @@ class PeopleViewController: UIViewController,UITableViewDataSource,UITableViewDe
         //라벨 위치 설정
         label.snp.makeConstraints { (m) in
             m.centerY.equalTo(cell)
-            m.left.equalTo(imageView.snp.right).offset(30)
+            m.left.equalTo(imageView.snp.right).offset(20)
             
         }
         //userName등록
@@ -92,9 +92,12 @@ class PeopleViewController: UIViewController,UITableViewDataSource,UITableViewDe
        }
     //셀의 높이 설정
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return 70
     }
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let view = self.storyboard?.instantiateViewController(identifier: "ChatViewController")
+        self.navigationController?.pushViewController(view!, animated: true)
+    }
 
     /*
     // MARK: - Navigation

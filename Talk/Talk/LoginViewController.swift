@@ -49,6 +49,8 @@ class LoginViewController: UIViewController {
         Auth.auth().addStateDidChangeListener { (auth, user) in
             if(user != nil){
                 let view = self.storyboard?.instantiateViewController(identifier: "MainViewTabBarController") as! UITabBarController
+                //화면이 modal 로 present될때 전체화면으로 만들어줌
+                view.modalPresentationStyle = .fullScreen
                 self.present(view, animated: true, completion: nil)
             }
         }

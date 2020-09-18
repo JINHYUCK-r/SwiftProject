@@ -94,8 +94,12 @@ class PeopleViewController: UIViewController,UITableViewDataSource,UITableViewDe
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let view = self.storyboard?.instantiateViewController(identifier: "ChatViewController")
+        let view = self.storyboard?.instantiateViewController(identifier: "ChatViewController") as? ChatViewController
+        //각 채팅대상의 셀을 선택하면 uid를 선택해서 정보를 뽑아냄
+        //그리고 ChatviewContoller에 String이 담기게 됨
+        view?.destinationUid = self.array[indexPath.row].uid
         self.navigationController?.pushViewController(view!, animated: true)
     }
 

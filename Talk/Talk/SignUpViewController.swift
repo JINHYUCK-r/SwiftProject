@@ -88,7 +88,7 @@ class SignUpViewController: UIViewController,UINavigationControllerDelegate,UIIm
 
                  imageRef.downloadURL(completion: { (url, err) in
 
-                     Database.database().reference().child("users").child(uid!).setValue(["userName":self.name.text,"profileImageUrl":url?.absoluteString])
+                    Database.database().reference().child("users").child(uid!).setValue(["userName":self.name.text,"profileImageUrl":url?.absoluteString,"uid":Auth.auth().currentUser?.uid])
                     
                     self.dismiss(animated: true, completion: nil)
 

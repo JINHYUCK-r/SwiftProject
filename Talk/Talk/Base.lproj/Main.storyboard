@@ -162,11 +162,33 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="t8u-H6-uHi">
+                                <rect key="frame" x="20" y="44" width="374" height="760"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" rowHeight="70" id="5ox-bA-qze">
+                                        <rect key="frame" x="0.0" y="28" width="374" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5ox-bA-qze" id="RQ7-yO-Yog">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="70"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="K63-Fd-4qL" id="0Ea-Y2-scx"/>
+                                    <outlet property="delegate" destination="K63-Fd-4qL" id="q8C-cg-2gd"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="e8i-Ce-HUF" firstAttribute="leading" secondItem="Ayw-fy-18x" secondAttribute="leading" constant="20" id="5FS-0D-i9u"/>
+                            <constraint firstItem="Ayw-fy-18x" firstAttribute="trailing" secondItem="t8u-H6-uHi" secondAttribute="trailing" constant="20" id="7CB-VJ-TYE"/>
+                            <constraint firstItem="t8u-H6-uHi" firstAttribute="leading" secondItem="Ayw-fy-18x" secondAttribute="leading" constant="20" id="WYD-Le-e9o"/>
+                            <constraint firstItem="TkH-zj-lLc" firstAttribute="top" secondItem="t8u-H6-uHi" secondAttribute="bottom" constant="8" id="ZHb-kY-uhp"/>
                             <constraint firstItem="Ayw-fy-18x" firstAttribute="trailing" secondItem="TkH-zj-lLc" secondAttribute="trailing" constant="20" id="ed9-B7-chk"/>
+                            <constraint firstItem="t8u-H6-uHi" firstAttribute="top" secondItem="Ayw-fy-18x" secondAttribute="top" id="glO-Pw-8Xl"/>
                             <constraint firstItem="Ayw-fy-18x" firstAttribute="bottom" secondItem="TkH-zj-lLc" secondAttribute="bottom" constant="20" id="tub-7K-f70"/>
                             <constraint firstItem="Ayw-fy-18x" firstAttribute="bottom" secondItem="e8i-Ce-HUF" secondAttribute="bottom" constant="20" id="vvU-sY-nuB"/>
                         </constraints>
@@ -174,6 +196,7 @@
                     </view>
                     <connections>
                         <outlet property="sendButton" destination="TkH-zj-lLc" id="xop-7x-Dbz"/>
+                        <outlet property="tableView" destination="t8u-H6-uHi" id="yAF-ry-Iuq"/>
                         <outlet property="textField_message" destination="e8i-Ce-HUF" id="E5Z-JB-JWh"/>
                     </connections>
                 </viewController>

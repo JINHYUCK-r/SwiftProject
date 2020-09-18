@@ -37,11 +37,21 @@ class PeopleViewController: UIViewController,UITableViewDataSource,UITableViewDe
             
             //중복되는것을 제거하는코드
             self.array.removeAll()
+            
+            //나의 uid를 받음
+            let myUid = Auth.auth().currentUser?.uid
+            
             //반복문으로 데이터베이스에 등록되어있는 값을 출력해냄
             for child in snapshot.children{
                 let fchild = child as! DataSnapshot
                 let userModel = UserModel()
                 userModel.setValuesForKeys(fchild.value as! [String : Any])
+                
+                //나를 채팅목록에서 뜨지않게 하기 위함
+                if(userModel.uid == myUid){
+                    continue
+                }
+                
                 self.array.append(userModel)
             }
             DispatchQueue.main.async {

@@ -60,6 +60,10 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         }
         UIView.animate(withDuration: 0, animations: {self.view.layoutIfNeeded()}, completion: {
             (complete) in
+            //키보드가 나타날때 테이블뷰를 맨밑으로 보여줌
+            if self.comments.count>0{
+                self.tableView.scrollToRow(at: IndexPath(item: self.comments.count-1, section: 0), at: UITableView.ScrollPosition.bottom, animated: true)
+            }
         })
     }
     
@@ -100,7 +104,9 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                     "message" : textField_message.text!
             ]
             
-            Database.database().reference().child("chatrooms").child(chatRoomUid!).child("comments").childByAutoId().setValue(value)
+            Database.database().reference().child("chatrooms").child(chatRoomUid!).child("comments").childByAutoId().setValue(value) { (err, ref) in
+                self.textField_message.text! = ""
+            }
         }
        
     }
@@ -133,21 +139,25 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             self.getMassgeList()
         })
     }
-    
+    //메세지를 받을때
     func getMassgeList(){
         Database.database().reference().child("chatrooms").child(self.chatRoomUid!).child("comments").observe(DataEventType.value, with:  { (datasnapshot) in
             //데이터가 누적되는것을 방지
             self.comments.removeAll()
             
-            for item in datasnapshot.children.allObjects as! [DataSnapshot]{
-                let comment  = ChatModel.Comment(JSON: item.value as! [String: AnyObject])
+           for item in datasnapshot.children.allObjects as! [DataSnapshot]{
+                let comment = ChatModel.Comment(JSON: item.value as! [String:AnyObject])
                 self.comments.append(comment!)
             }
-            
             self.tableView.reloadData()
+            //테이블뷰의 맨끝으로 이동하게 되는 메소드
+            if self.comments.count > 0{
+                self.tableView.scrollToRow(at: IndexPath(item: self.comments.count-1, section: 0), at: UITableView.ScrollPosition.bottom, animated: true)
+                
+            }
             
-            
-        })
+           
+            })
     }
 
     /*

@@ -199,17 +199,17 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DestinationMessageCell" id="PwQ-1i-sH8" customClass="DestinationMessageCell" customModule="Talk" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="98" width="374" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="98" width="374" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PwQ-1i-sH8" id="Lem-y4-Xeq">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="message_gray" translatesAutoresizingMaskIntoConstraints="NO" id="wnB-Sn-sqO">
-                                                    <rect key="frame" x="50" y="11" width="42" height="21"/>
+                                                    <rect key="frame" x="50" y="11" width="42" height="21.5"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PEw-jb-dU0">
-                                                    <rect key="frame" x="50" y="11" width="42" height="21"/>
+                                                    <rect key="frame" x="50" y="11" width="42" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -264,12 +264,13 @@
                             <constraint firstItem="TkH-zj-lLc" firstAttribute="top" secondItem="t8u-H6-uHi" secondAttribute="bottom" constant="8" id="ZHb-kY-uhp"/>
                             <constraint firstItem="Ayw-fy-18x" firstAttribute="trailing" secondItem="TkH-zj-lLc" secondAttribute="trailing" constant="20" id="ed9-B7-chk"/>
                             <constraint firstItem="t8u-H6-uHi" firstAttribute="top" secondItem="Ayw-fy-18x" secondAttribute="top" id="glO-Pw-8Xl"/>
+                            <constraint firstItem="e8i-Ce-HUF" firstAttribute="centerY" secondItem="TkH-zj-lLc" secondAttribute="centerY" id="sHO-Yj-7dk"/>
                             <constraint firstItem="Ayw-fy-18x" firstAttribute="bottom" secondItem="TkH-zj-lLc" secondAttribute="bottom" constant="20" id="tub-7K-f70"/>
-                            <constraint firstItem="Ayw-fy-18x" firstAttribute="bottom" secondItem="e8i-Ce-HUF" secondAttribute="bottom" constant="20" id="vvU-sY-nuB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ayw-fy-18x"/>
                     </view>
                     <connections>
+                        <outlet property="bottomConstraint" destination="tub-7K-f70" id="2cF-ZA-gwR"/>
                         <outlet property="sendButton" destination="TkH-zj-lLc" id="xop-7x-Dbz"/>
                         <outlet property="tableView" destination="t8u-H6-uHi" id="yAF-ry-Iuq"/>
                         <outlet property="textField_message" destination="e8i-Ce-HUF" id="E5Z-JB-JWh"/>

@@ -12,6 +12,7 @@ import Firebase
 class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
    
     
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     
     @IBOutlet weak var sendButton: UIButton!
@@ -33,7 +34,42 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         uid = Auth.auth().currentUser?.uid
         sendButton.addTarget(self, action: #selector(createRoom), for: .touchUpInside)
         checkChatRoom()
+        //채팅방뷰에 나타날때 탭바를 숨김
+        self.tabBarController?.tabBar.isHidden = true
         // Do any additional setup after loading the view.
+        
+        //화면 밖을 탭하면 키보드가 사라짐
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    //화면시작
+    override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+       }
+    //채팅방에서 나갈때( 종료될때)
+    override func viewWillDisappear(_ animated: Bool) {NotificationCenter.default.removeObserver(self)
+        //탭바가 사라지는것을 다시 취소, 다시 띄움
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    //키보드가 보여지는 메서드
+    @objc func keyboardWillShow(notification : Notification){
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue{
+            self.bottomConstraint.constant = keyboardSize.height
+        }
+        UIView.animate(withDuration: 0, animations: {self.view.layoutIfNeeded()}, completion: {
+            (complete) in
+        })
+    }
+    
+    @objc func keyboardWillHide(notification:Notification){
+        self.bottomConstraint.constant = 0
+        self.view.layoutIfNeeded()
+    }
+    
+    @objc func dismissKeyboard(){
+        self.view.endEditing(true)
     }
     
     @objc func createRoom(){

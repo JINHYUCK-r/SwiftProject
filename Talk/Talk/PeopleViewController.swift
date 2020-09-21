@@ -26,7 +26,7 @@ class PeopleViewController: UIViewController,UITableViewDataSource,UITableViewDe
         tableView.delegate = self
         tableView.dataSource = self
         //테이블뷰에 테이블뷰 셀을 등록
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        tableView.register(PeopleViewTableCell.self, forCellReuseIdentifier: "Cell")
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (m) in
             m.top.equalTo(view)
@@ -71,9 +71,9 @@ class PeopleViewController: UIViewController,UITableViewDataSource,UITableViewDe
     
        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell",for: indexPath)
-        let imageView = UIImageView()
-        cell.addSubview(imageView)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell",for: indexPath) as! PeopleViewTableCell
+        let imageView = cell.imageview!
+
         imageView.snp.makeConstraints { (m) in
             m.centerY.equalTo(cell)
             m.left.equalTo(cell).offset(10)
@@ -87,9 +87,9 @@ class PeopleViewController: UIViewController,UITableViewDataSource,UITableViewDe
                 imageView.clipsToBounds = true
             }
         } .resume()
-        let label = UILabel()
+        let label = cell.label!
         //셀에 라벨추가
-        cell.addSubview(label)
+
         //라벨 위치 설정
         label.snp.makeConstraints { (m) in
             m.centerY.equalTo(cell)
@@ -123,4 +123,23 @@ class PeopleViewController: UIViewController,UITableViewDataSource,UITableViewDe
     }
     */
 
+}
+
+//셀을 재사용하여 메모리 낭비를 막음
+class PeopleViewTableCell :UITableViewCell{
+    
+    var imageview :UIImageView! = UIImageView()
+    var label :UILabel! = UILabel()
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.addSubview(imageview)
+        self.addSubview(label)
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
 }

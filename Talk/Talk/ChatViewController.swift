@@ -10,16 +10,7 @@ import UIKit
 import Firebase
 
 class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return comments.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let view = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath)
-        view.textLabel?.text = self.comments[indexPath.row].message
-        
-        return view
-    }
+   
     
     
     
@@ -33,6 +24,8 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var uid : String?
     var chatRoomUid : String?
     var comments : [ChatModel.Comment] = []
+    
+    var userModel : UserModel?
     
 
     override func viewDidLoad() {
@@ -87,7 +80,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                      self.chatRoomUid = item.key
                     //꺼놓았던 버튼을 다시 실행시켜줌
                     self.sendButton.isEnabled = true
-                    self.getMassgeList()
+                    self.getDestinationInfo()
                 }
             }
              
@@ -96,6 +89,15 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
            })
            
        }
+    //대화 상대의 정보를 가져옴
+    func getDestinationInfo(){
+        Database.database().reference().child("users").child(self.destinationUid!).observeSingleEvent(of: DataEventType.value, with: { (datasnapshot) in
+            self.userModel = UserModel()
+            self.userModel?.setValuesForKeys(datasnapshot.value as! [String : Any])
+            self.getMassgeList()
+        })
+    }
+    
     func getMassgeList(){
         Database.database().reference().child("chatrooms").child(self.chatRoomUid!).child("comments").observe(DataEventType.value, with:  { (datasnapshot) in
             //데이터가 누적되는것을 방지
@@ -121,5 +123,64 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+           return comments.count
+       }
+       
+       func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            //uid를 확인하여 나의 메세지셀에 보여주거나 상대방의 메세지 셀을 보여줌
+               if(self.comments[indexPath.row].uid == uid){
+                   let view = tableView.dequeueReusableCell(withIdentifier: "MyMessageCell", for: indexPath) as! MyMessageCell
+                   view.label_message.text = self.comments[indexPath.row].message
+                   view.label_message.numberOfLines = 0
+                   return view
+                   
+               }else{
+                   
+                   let view = tableView.dequeueReusableCell(withIdentifier: "DestinationMessageCell", for: indexPath) as! DestinationMessageCell
+                   view.label_name.text = userModel?.userName
+                   view.label_message.text = self.comments[indexPath.row].message
+                   view.label_message.numberOfLines = 0;
+                   
+                   let url = URL(string:(self.userModel?.profileImageUrl)!)
+                   URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, err) in
+                       
+                       DispatchQueue.main.async {
+                           
+                           view.imageview_profile.image = UIImage(data: data!)
+                           view.imageview_profile.layer.cornerRadius = view.imageview_profile.frame.width/2
+                           view.imageview_profile.clipsToBounds = true
+                           
+                       }
+                   }).resume()
+                   return view
+                   
+               }
+               
+               //return UITableViewCell()
+           }
+    
+    //테이블뷰의유동적인 셀 높이 조정
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
 
+}
+
+
+
+//chat뷰에서 셀을 받는 클래스
+class MyMessageCell : UITableViewCell{
+    
+    @IBOutlet weak var label_message: UILabel!
+}
+class DestinationMessageCell:UITableViewCell{
+    
+    @IBOutlet weak var label_message: UILabel!
+
+    @IBOutlet weak var imageview_profile: UIImageView!
+    
+    @IBOutlet weak var label_name: UILabel!
+    
 }

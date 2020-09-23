@@ -10,7 +10,6 @@ import UIKit
 import Firebase
 
 class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
-   
     
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
@@ -28,6 +27,8 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var userModel : UserModel?
     
 
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         uid = Auth.auth().currentUser?.uid
@@ -100,7 +101,8 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             let value :Dictionary<String,Any> = [
 
                     "uid" : uid!,
-                    "message" : textField_message.text!
+                    "message" : textField_message.text!,
+                    "timestamp" : ServerValue.timestamp()
             ]
             
             Database.database().reference().child("chatrooms").child(chatRoomUid!).child("comments").childByAutoId().setValue(value) { (err, ref) in
@@ -172,17 +174,24 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
            return comments.count
        }
-       
+       /*
        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             //uid를 확인하여 나의 메세지셀에 보여주거나 상대방의 메세지 셀을 보여줌
+            //내가 보낸 메세지
                if(self.comments[indexPath.row].uid == uid){
                    let view = tableView.dequeueReusableCell(withIdentifier: "MyMessageCell", for: indexPath) as! MyMessageCell
                    view.label_message.text = self.comments[indexPath.row].message
                    view.label_message.numberOfLines = 0
+                
+                //내가 보낸 시간을 찍어주는 코드
+                if let time = self.comments[indexPath.row].timestamp{
+                    view.lable_timestamp.text = time.toDayTime
+                }
+                
                    return view
                    
                }else{
-                   
+                   //상대방이 보내준 메세지
                    let view = tableView.dequeueReusableCell(withIdentifier: "DestinationMessageCell", for: indexPath) as! DestinationMessageCell
                    view.label_name.text = userModel?.userName
                    view.label_message.text = self.comments[indexPath.row].message
@@ -199,12 +208,69 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                            
                        }
                    }).resume()
+                
+                //상대가 보낸 시간을 찍어주는 코드
+                if let time = self.comments[indexPath.row].timestamp{
+                    view.label_timestamp.text = time.toDayTime
+                }
+
+                
                    return view
                    
                }
                
                //return UITableViewCell()
            }
+    */
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+          
+          if(self.comments[indexPath.row].uid == uid){
+              let view = tableView.dequeueReusableCell(withIdentifier: "MyMessageCell", for: indexPath) as! MyMessageCell
+              view.label_message.text = self.comments[indexPath.row].message
+              view.label_message.numberOfLines = 0
+              
+               if let time = self.comments[indexPath.row].timestamp{
+                view.lable_timestamp.text = time.toDayTime
+              }
+              
+              
+              
+              
+              return view
+              
+          }else{
+              
+              let view = tableView.dequeueReusableCell(withIdentifier: "DestinationMessageCell", for: indexPath) as! DestinationMessageCell
+              view.label_name.text = userModel?.userName
+              view.label_message.text = self.comments[indexPath.row].message
+              view.label_message.numberOfLines = 0;
+            
+            if let time = self.comments[indexPath.row].timestamp{
+                                                view.label_timestamp.text = time.toDayTime
+                                            }
+              
+              let url = URL(string:(self.userModel?.profileImageUrl)!)
+              URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, err) in
+                  
+                  DispatchQueue.main.async {
+                      
+                      view.imageview_profile.image = UIImage(data: data!)
+                      view.imageview_profile.layer.cornerRadius = view.imageview_profile.frame.width/2
+                      view.imageview_profile.clipsToBounds = true
+                      
+                  }
+              }).resume()
+             
+              
+              
+              
+              return view
+              
+          }
+          
+        
+          return UITableViewCell()
+      }
     
     //테이블뷰의유동적인 셀 높이 조정
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -214,10 +280,21 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
 }
 
 
-
-//chat뷰에서 셀을 받는 클래스
+extension Int{
+    
+    var toDayTime :String{
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ko_KR")
+        dateFormatter.dateFormat = "yyyy.MM.dd HH:mm"
+        let date = Date(timeIntervalSince1970: Double(self)/1000)
+        return dateFormatter.string(from: date)
+        
+    }
+    
+}//chat뷰에서 셀을 받는 클래스
 class MyMessageCell : UITableViewCell{
     
+    @IBOutlet weak var lable_timestamp: UILabel!
     @IBOutlet weak var label_message: UILabel!
 }
 class DestinationMessageCell:UITableViewCell{
@@ -227,5 +304,8 @@ class DestinationMessageCell:UITableViewCell{
     @IBOutlet weak var imageview_profile: UIImageView!
     
     @IBOutlet weak var label_name: UILabel!
+    @IBOutlet weak var label_timestamp: UILabel!
+    
+    
     
 }

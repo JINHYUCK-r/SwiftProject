@@ -20,12 +20,11 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     @IBOutlet weak var textField_message: UITextField!
     
     @IBOutlet weak var tableView: UITableView!
-    public var destinationUid : String? // 나중에 내가 채팅할 대상의 uid
     
+    public var destinationUid : String? // 나중에 내가 채팅할 대상의 uid
     var uid : String?
     var chatRoomUid : String?
     var comments : [ChatModel.Comment] = []
-    
     var userModel : UserModel?
     
 

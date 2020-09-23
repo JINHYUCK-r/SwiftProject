@@ -33,8 +33,8 @@ class ChatModel: Mappable {
                 
             }
             public  func mapping(map: Map) {
-                uid <- map["uid"]
-                message <- map["message"]
+               uid <- map["uid"]
+               message <- map["message"]
             }
         }
         

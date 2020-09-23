@@ -100,11 +100,13 @@ class PeopleViewController: UIViewController,UITableViewDataSource,UITableViewDe
         label.text = array[indexPath.row].userName
           return cell
        }
+    
     //셀의 높이 설정
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
     }
     
+    //테이블의 셀이 선택되면
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let view = self.storyboard?.instantiateViewController(identifier: "ChatViewController") as? ChatViewController
         //각 채팅대상의 셀을 선택하면 uid를 선택해서 정보를 뽑아냄

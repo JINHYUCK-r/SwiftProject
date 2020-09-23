@@ -90,21 +90,21 @@
 		3C3BB611250F5B70007986D7 /* Talk */ = {
 			isa = PBXGroup;
 			children = (
+				3C3BB618250F5B70007986D7 /* Main.storyboard */,
 				3C978FDE251A2D2B00975862 /* TabBar */,
 				3CABFDFC2514865500C256EE /* Model */,
 				3C4C75252510A91500363D18 /* Talk.entitlements */,
 				3C3BB626250F5D2F007986D7 /* GoogleService-Info.plist */,
 				3C3BB612250F5B70007986D7 /* AppDelegate.swift */,
 				3C3BB614250F5B70007986D7 /* SceneDelegate.swift */,
-				3C3BB618250F5B70007986D7 /* Main.storyboard */,
 				3C3BB616250F5B70007986D7 /* ViewController.swift */,
 				3C4C75212510888700363D18 /* LoginViewController.swift */,
 				3C4C752325109A1F00363D18 /* SignUpViewController.swift */,
+				3CABFDF82514854800C256EE /* ChatViewController.swift */,
 				3C3BB61B250F5B72007986D7 /* Assets.xcassets */,
 				3C3BB61D250F5B72007986D7 /* LaunchScreen.storyboard */,
 				3C3BB620250F5B72007986D7 /* Info.plist */,
 				3C3BB628250F6799007986D7 /* RemoteConfigDefaults.plist */,
-				3CABFDF82514854800C256EE /* ChatViewController.swift */,
 			);
 			path = Talk;
 			sourceTree = "<group>";

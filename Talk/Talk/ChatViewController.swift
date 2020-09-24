@@ -8,8 +8,11 @@
 
 import UIKit
 import Firebase
+import Kingfisher
 
 class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+    
+    
     
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
@@ -170,105 +173,45 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         // Pass the selected object to the new view controller.
     }
     */
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-           return comments.count
-       }
-       /*
-       func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            //uid를 확인하여 나의 메세지셀에 보여주거나 상대방의 메세지 셀을 보여줌
-            //내가 보낸 메세지
-               if(self.comments[indexPath.row].uid == uid){
-                   let view = tableView.dequeueReusableCell(withIdentifier: "MyMessageCell", for: indexPath) as! MyMessageCell
-                   view.label_message.text = self.comments[indexPath.row].message
-                   view.label_message.numberOfLines = 0
-                
-                //내가 보낸 시간을 찍어주는 코드
-                if let time = self.comments[indexPath.row].timestamp{
-                    view.lable_timestamp.text = time.toDayTime
-                }
-                
-                   return view
-                   
-               }else{
-                   //상대방이 보내준 메세지
-                   let view = tableView.dequeueReusableCell(withIdentifier: "DestinationMessageCell", for: indexPath) as! DestinationMessageCell
-                   view.label_name.text = userModel?.userName
-                   view.label_message.text = self.comments[indexPath.row].message
-                   view.label_message.numberOfLines = 0;
-                   
-                   let url = URL(string:(self.userModel?.profileImageUrl)!)
-                   URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, err) in
-                       
-                       DispatchQueue.main.async {
-                           
-                           view.imageview_profile.image = UIImage(data: data!)
-                           view.imageview_profile.layer.cornerRadius = view.imageview_profile.frame.width/2
-                           view.imageview_profile.clipsToBounds = true
-                           
-                       }
-                   }).resume()
-                
-                //상대가 보낸 시간을 찍어주는 코드
-                if let time = self.comments[indexPath.row].timestamp{
-                    view.label_timestamp.text = time.toDayTime
-                }
-
-                
-                   return view
-                   
-               }
-               
-               //return UITableViewCell()
-           }
-    */
+        comments.count
+    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-          
+          //uid를 확인하여 나의 메세지셀에 보여주거나 상대방의 메세지 셀을 보여줌
+          //내가 보낸 메세지
           if(self.comments[indexPath.row].uid == uid){
               let view = tableView.dequeueReusableCell(withIdentifier: "MyMessageCell", for: indexPath) as! MyMessageCell
               view.label_message.text = self.comments[indexPath.row].message
               view.label_message.numberOfLines = 0
               
+             //내가 보낸 시간을 찍어주는 코드
                if let time = self.comments[indexPath.row].timestamp{
                 view.lable_timestamp.text = time.toDayTime
               }
               
-              
-              
-              
               return view
               
           }else{
-              
+              //상대방이 보내준 메세지
               let view = tableView.dequeueReusableCell(withIdentifier: "DestinationMessageCell", for: indexPath) as! DestinationMessageCell
               view.label_name.text = userModel?.userName
               view.label_message.text = self.comments[indexPath.row].message
               view.label_message.numberOfLines = 0;
             
+            //상대가 보낸 시간을 찍어주는 코드
             if let time = self.comments[indexPath.row].timestamp{
                                                 view.label_timestamp.text = time.toDayTime
                                             }
               
               let url = URL(string:(self.userModel?.profileImageUrl)!)
-              URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, err) in
-                  
-                  DispatchQueue.main.async {
-                      
-                      view.imageview_profile.image = UIImage(data: data!)
-                      view.imageview_profile.layer.cornerRadius = view.imageview_profile.frame.width/2
-                      view.imageview_profile.clipsToBounds = true
-                      
-                  }
-              }).resume()
-             
-              
-              
-              
+            //이미지를 동그랗게 만들어주는 코드
+            view.imageview_profile.layer.cornerRadius = view.imageview_profile.frame.width/2
+            view.imageview_profile.clipsToBounds = true
+            view.imageview_profile.kf.setImage(with: url)
+            
               return view
               
           }
-          
-        
           return UITableViewCell()
       }
     

@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 import Firebase
+import Kingfisher
 
 
 class PeopleViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
@@ -79,7 +80,12 @@ class PeopleViewController: UIViewController,UITableViewDataSource,UITableViewDe
             m.left.equalTo(cell).offset(10)
             m.height.width.equalTo(50)
         }
+        let url = URL(string: array[indexPath.row].profileImageUrl!)
+        imageView.layer.cornerRadius = 50/2
+        imageView.clipsToBounds = true
+        imageView.kf.setImage(with: url)
        //프로필 이미지가 저장되어 있는 url주소를 받아서와 이미지 데이터로 보여줌
+        /*
         URLSession.shared.dataTask(with:  URL(string: array[indexPath.row].profileImageUrl!)!) { (data, response, err) in
             DispatchQueue.main.async {
                 imageView.image = UIImage(data: data!)
@@ -87,6 +93,7 @@ class PeopleViewController: UIViewController,UITableViewDataSource,UITableViewDe
                 imageView.clipsToBounds = true
             }
         } .resume()
+ */
         let label = cell.label!
         //셀에 라벨추가
 

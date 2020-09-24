@@ -8,7 +8,7 @@
 
 import UIKit
 import Firebase
-
+import Kingfisher
 
 class ChatRoomsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -83,8 +83,9 @@ class ChatRoomsViewController: UIViewController, UITableViewDataSource, UITableV
             
             
             cell.lable_title.text = userModel.userName
+            
             let url = URL(string:userModel.profileImageUrl!)
-            URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, err) in
+          URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, err) in
                 
                 DispatchQueue.main.sync {
                     cell.imageview.image = UIImage(data:data!)
@@ -92,7 +93,7 @@ class ChatRoomsViewController: UIViewController, UITableViewDataSource, UITableV
                     cell.imageview.layer.masksToBounds = true
                 }
             }).resume()
-            
+          
             //sorted 오름차순일 경우 $0이 크게 아니면 반대로
             let lastMessagekey = self.chatrooms[indexPath.row].comments.keys.sorted(){$0>$1}
             cell.label_lastmessage.text = self.chatrooms[indexPath.row].comments[lastMessagekey[0]]?.message

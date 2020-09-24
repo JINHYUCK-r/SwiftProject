@@ -15,6 +15,7 @@ class UserModel: NSObject {
     @objc var userName : String?
     //채팅방을 사용할때 사용될 uid
     @objc var uid : String?
+    @objc var comment : String?
     
     
 }

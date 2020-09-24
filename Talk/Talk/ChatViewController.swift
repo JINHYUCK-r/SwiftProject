@@ -31,7 +31,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     var databaseRef : DatabaseReference?
     var observe : UInt?
-    
+    var peopleCount : Int?
 
     
     
@@ -146,56 +146,87 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         Database.database().reference().child("users").child(self.destinationUid!).observeSingleEvent(of: DataEventType.value, with: { (datasnapshot) in
             self.userModel = UserModel()
             self.userModel?.setValuesForKeys(datasnapshot.value as! [String : Any])
-            self.getMassgeList()
+            self.getMessageList()
         })
     }
     
+    //메세지 갯수만큼 인원수를 읽기때문에 서버에 무리를 주기때문에 처음에만 읽도록 함
     func setReadCount(label:UILabel?, position: Int?){
         let readCount = self.comments[position!].readUsers.count
+        if(peopleCount == nil){
+            
+        
         Database.database().reference().child("chatrooms").child(chatRoomUid!).child("users").observeSingleEvent(of: DataEventType.value, with:     {(DataSnapshot) in
             
             let dic = DataSnapshot.value as! [String:Any]
-            let noReadCount = dic.count - readCount
+            self.peopleCount = dic.count
+            let noReadCount = self.peopleCount! - readCount
+            if(noReadCount > 0){
+                           label?.isHidden = false
+                           label?.text = String(noReadCount)
+                       }else{
+                           label?.isHidden = true
+                       }
             
+           
+        })
+        }else{
+            let noReadCount = self.peopleCount! - readCount
             if(noReadCount > 0){
                 label?.isHidden = false
                 label?.text = String(noReadCount)
             }else{
                 label?.isHidden = true
             }
-        })
+            
+        }
     }
     //메세지를 받을때
-    func getMassgeList(){
-        databaseRef = Database.database().reference().child("chatrooms").child(self.chatRoomUid!).child("comments")
-        observe = databaseRef?.observe(DataEventType.value, with:  { (datasnapshot) in
+     func getMessageList(){
+          databaseRef = Database.database().reference().child("chatrooms").child(self.chatRoomUid!).child("comments")
+          observe = databaseRef?.observe(DataEventType.value, with: { (datasnapshot) in
             //데이터가 누적되는것을 방지
-            self.comments.removeAll()
-            var readUserDic : Dictionary<String,AnyObject> = [:]
-           for item in datasnapshot.children.allObjects as! [DataSnapshot]{
-            let key = item.key as String
-                let comment = ChatModel.Comment(JSON: item.value as! [String:AnyObject])
-            comment?.readUsers[self.uid!] = true
-            //파이어베이스가 nsdictionary만 지원
-            readUserDic[key] = comment?.toJSON() as! NSDictionary
-            self.comments.append(comment!)
-            
-            }
-            let nsDic = readUserDic as NSDictionary
-            datasnapshot.ref.updateChildValues(nsDic as! [AnyHashable : Any], withCompletionBlock:  {(err, ref) in
+              self.comments.removeAll()
+              var readUserDic : Dictionary<String,AnyObject> = [:]
+              for item in datasnapshot.children.allObjects as! [DataSnapshot]{
+                  let key = item.key as String
+                  let comment = ChatModel.Comment(JSON: item.value as! [String:AnyObject])
+                  let comment_motify = ChatModel.Comment(JSON: item.value as! [String:AnyObject])
+                  comment_motify?.readUsers[self.uid!] = true
+                  readUserDic[key] = comment_motify?.toJSON() as! NSDictionary
+                  self.comments.append(comment!)
+              }
+              
+              let nsDic = readUserDic as NSDictionary
+              if(!(self.comments.last?.readUsers.keys.contains(self.uid!))!){
+                  
+              
+              datasnapshot.ref.updateChildValues(nsDic as! [AnyHashable : Any], withCompletionBlock: { (err, ref) in
+                  
                 self.tableView.reloadData()
-                           //테이블뷰의 맨끝으로 이동하게 되는 메소드
-                           if self.comments.count > 0{
-                               self.tableView.scrollToRow(at: IndexPath(item: self.comments.count-1, section: 0), at: UITableView.ScrollPosition.bottom, animated: true)
-                               
-                           }
-                           
-                          
-                           })
-            })
-           
-    }
-
+                  
+                  if self.comments.count > 0{
+                    self.tableView.scrollToRow(at: IndexPath(item: self.comments.count-1, section: 0), at: UITableView.ScrollPosition.bottom, animated: true)
+                }
+                  
+              })
+              }else{
+                  self.tableView.reloadData()
+                  
+                  if self.comments.count > 0{
+                    self.tableView.scrollToRow(at: IndexPath(item: self.comments.count-1, section: 0), at: UITableView.ScrollPosition.bottom, animated: true)
+                      
+                  }
+              }
+              
+              
+              
+              
+              
+          })
+          
+      }
+      
     /*
     // MARK: - Navigation
 

@@ -29,6 +29,9 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var comments : [ChatModel.Comment] = []
     var userModel : UserModel?
     
+    var databaseRef : DatabaseReference?
+    var observe : UInt?
+    
 
     
     
@@ -51,11 +54,14 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
        }
+    
     //채팅방에서 나갈때( 종료될때)
     override func viewWillDisappear(_ animated: Bool) {NotificationCenter.default.removeObserver(self)
         //탭바가 사라지는것을 다시 취소, 다시 띄움
         self.tabBarController?.tabBar.isHidden = false
+        databaseRef?.removeObserver(withHandle: observe!)
     }
+    
     //키보드가 보여지는 메서드
     @objc func keyboardWillShow(notification : Notification){
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue{
@@ -145,23 +151,33 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     }
     //메세지를 받을때
     func getMassgeList(){
-        Database.database().reference().child("chatrooms").child(self.chatRoomUid!).child("comments").observe(DataEventType.value, with:  { (datasnapshot) in
+        databaseRef = Database.database().reference().child("chatrooms").child(self.chatRoomUid!).child("comments")
+        observe = databaseRef?.observe(DataEventType.value, with:  { (datasnapshot) in
             //데이터가 누적되는것을 방지
             self.comments.removeAll()
-            
+            var readUserDic : Dictionary<String,AnyObject> = [:]
            for item in datasnapshot.children.allObjects as! [DataSnapshot]{
+            let key = item.key as String
                 let comment = ChatModel.Comment(JSON: item.value as! [String:AnyObject])
-                self.comments.append(comment!)
-            }
-            self.tableView.reloadData()
-            //테이블뷰의 맨끝으로 이동하게 되는 메소드
-            if self.comments.count > 0{
-                self.tableView.scrollToRow(at: IndexPath(item: self.comments.count-1, section: 0), at: UITableView.ScrollPosition.bottom, animated: true)
-                
-            }
+            comment?.readUsers[self.uid!] = true
+            //파이어베이스가 nsdictionary만 지원
+            readUserDic[key] = comment?.toJSON() as! NSDictionary
+            self.comments.append(comment!)
             
-           
+            }
+            let nsDic = readUserDic as NSDictionary
+            datasnapshot.ref.updateChildValues(nsDic as! [AnyHashable : Any], withCompletionBlock:  {(err, ref) in
+                self.tableView.reloadData()
+                           //테이블뷰의 맨끝으로 이동하게 되는 메소드
+                           if self.comments.count > 0{
+                               self.tableView.scrollToRow(at: IndexPath(item: self.comments.count-1, section: 0), at: UITableView.ScrollPosition.bottom, animated: true)
+                               
+                           }
+                           
+                          
+                           })
             })
+           
     }
 
     /*

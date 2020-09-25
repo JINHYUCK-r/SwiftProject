@@ -128,7 +128,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
            for item in datasnapshot.children.allObjects as! [DataSnapshot]{
             if let chatRoomdic = item.value as? [String:AnyObject]{
                 let chatModel = ChatModel(JSON: chatRoomdic)
-                if(chatModel?.users[self.destinationUid!] == true){
+                if(chatModel?.users[self.destinationUid!] == true && chatModel?.users.count == 2){
                      self.chatRoomUid = item.key
                     //꺼놓았던 버튼을 다시 실행시켜줌
                     self.sendButton.isEnabled = true
@@ -185,6 +185,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
      func getMessageList(){
           databaseRef = Database.database().reference().child("chatrooms").child(self.chatRoomUid!).child("comments")
           observe = databaseRef?.observe(DataEventType.value, with: { (datasnapshot) in
+            
             //데이터가 누적되는것을 방지
               self.comments.removeAll()
               var readUserDic : Dictionary<String,AnyObject> = [:]
@@ -198,6 +199,10 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
               }
               
               let nsDic = readUserDic as NSDictionary
+            
+            if(self.comments.last?.readUsers.keys == nil){
+                return
+            }
               if(!(self.comments.last?.readUsers.keys.contains(self.uid!))!){
                   
               
@@ -249,7 +254,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
               
              //내가 보낸 시간을 찍어주는 코드
                if let time = self.comments[indexPath.row].timestamp{
-                view.lable_timestamp.text = time.toDayTime
+                view.label_timestamp.text = time.toDayTime
               }
             
             setReadCount(label: view.label_read_counter, position: indexPath.row)
@@ -304,7 +309,7 @@ extension Int{
 }//chat뷰에서 셀을 받는 클래스
 class MyMessageCell : UITableViewCell{
     
-    @IBOutlet weak var lable_timestamp: UILabel!
+    @IBOutlet weak var label_timestamp: UILabel!
     @IBOutlet weak var label_message: UILabel!
     
     @IBOutlet weak var label_read_counter: UILabel!
@@ -316,6 +321,7 @@ class DestinationMessageCell:UITableViewCell{
     @IBOutlet weak var imageview_profile: UIImageView!
     
     @IBOutlet weak var label_name: UILabel!
+    
     @IBOutlet weak var label_timestamp: UILabel!
     
     @IBOutlet weak var label_read_counter: UILabel!

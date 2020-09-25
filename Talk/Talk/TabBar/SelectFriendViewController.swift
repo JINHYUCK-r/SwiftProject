@@ -10,10 +10,11 @@ import UIKit
 import Firebase
 import BEMCheckBox
 
-class SelectFriendViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SelectFriendViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,BEMCheckBoxDelegate {
     
     var array : [UserModel] = []
-    
+    var users = Dictionary<String,Bool>()
+    @IBOutlet weak var button: UIButton!
     @IBOutlet weak var tableview: UITableView!
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -24,12 +25,33 @@ class SelectFriendViewController: UIViewController, UITableViewDelegate, UITable
         let view = tableView.dequeueReusableCell(withIdentifier: "SelectFriendCell", for: indexPath) as! SelectFriendCell
         view.labelName.text = array[indexPath.row].userName
         view.imageviewProfile.kf.setImage(with: URL(string: array[indexPath.row].profileImageUrl!))
-        
+        view.checkbox.delegate = self
+        view.checkbox.tag = indexPath.row
 
     
     return view
     }
     
+    //체크박스를 클릭했을때 어떤이벤트를 발생시킬지 정함
+    func didTap(_ checkBox: BEMCheckBox) {
+        //체크박스가 체크되었을때
+        if(checkBox.on){
+            users[self.array[checkBox.tag].uid!] = true
+            
+          //체크박스의 체크가 해제되었을때
+        }else{
+            //체크가 해제되면 users의 목록에서 제거
+            users.removeValue(forKey: self.array[checkBox.tag].uid!)
+            
+        }
+    }
+    
+    @objc func createRoom(){
+        var myUid = Auth.auth().currentUser?.uid
+        users[myUid!] = true
+        let nsDic = users as NSDictionary
+        Database.database().reference().child("chatrooms").childByAutoId().child("users").setValue(nsDic)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,7 +84,7 @@ class SelectFriendViewController: UIViewController, UITableViewDelegate, UITable
             
         }
 
-        
+        button.addTarget(self, action: #selector(createRoom), for: .touchUpInside)
 
         // Do any additional setup after loading the view.
     }

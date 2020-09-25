@@ -130,7 +130,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KLf-jP-LZf">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="636"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SelectFriendCell" rowHeight="70" id="J5z-Md-Pbh" customClass="SelectFriendCell" customModule="Talk" customModuleProvider="target">
@@ -185,10 +185,17 @@
                                     <outlet property="delegate" destination="pVs-Qk-cps" id="1Hd-Ys-xSt"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I2o-ow-fP5">
+                                <rect key="frame" x="166" y="743" width="82" height="51"/>
+                                <state key="normal" title="채팅방 만들기"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="tpt-r7-flv" firstAttribute="bottom" secondItem="KLf-jP-LZf" secondAttribute="bottom" id="fst-Bc-Rnu"/>
+                            <constraint firstItem="I2o-ow-fP5" firstAttribute="centerX" secondItem="ocO-cR-E0H" secondAttribute="centerX" id="JsV-7R-Ocq"/>
+                            <constraint firstItem="I2o-ow-fP5" firstAttribute="top" secondItem="KLf-jP-LZf" secondAttribute="bottom" constant="19" id="Ow7-4m-Ggi"/>
+                            <constraint firstItem="tpt-r7-flv" firstAttribute="bottom" secondItem="I2o-ow-fP5" secondAttribute="bottom" constant="19" id="REM-ZD-xLg"/>
+                            <constraint firstItem="tpt-r7-flv" firstAttribute="bottom" secondItem="KLf-jP-LZf" secondAttribute="bottom" constant="89" id="fst-Bc-Rnu"/>
                             <constraint firstItem="KLf-jP-LZf" firstAttribute="leading" secondItem="tpt-r7-flv" secondAttribute="leading" id="lAq-9a-8jO"/>
                             <constraint firstItem="KLf-jP-LZf" firstAttribute="top" secondItem="tpt-r7-flv" secondAttribute="top" id="tyB-xO-gfI"/>
                             <constraint firstItem="tpt-r7-flv" firstAttribute="trailing" secondItem="KLf-jP-LZf" secondAttribute="trailing" id="uPV-Cp-J0U"/>
@@ -197,12 +204,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="iBm-5c-bqH"/>
                     <connections>
+                        <outlet property="button" destination="I2o-ow-fP5" id="dZf-Qb-dwv"/>
                         <outlet property="tableview" destination="KLf-jP-LZf" id="MCu-tx-d6f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nyo-V9-MD0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3426" y="-633"/>
+            <point key="canvasLocation" x="3424.6376811594205" y="-633.48214285714278"/>
         </scene>
         <!--People View Controller-->
         <scene sceneID="62Z-TT-zOY">

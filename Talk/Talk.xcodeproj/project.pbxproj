@@ -22,6 +22,7 @@
 		3C978FE0251A2DB700975862 /* ChatRoomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C978FDF251A2DB700975862 /* ChatRoomsViewController.swift */; };
 		3CABFDF92514854800C256EE /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CABFDF82514854800C256EE /* ChatViewController.swift */; };
 		3CABFDFE2514868A00C256EE /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CABFDFD2514868A00C256EE /* ChatModel.swift */; };
+		3CC1C877251DBA1200FF11C4 /* SelectFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC1C876251DBA1200FF11C4 /* SelectFriendViewController.swift */; };
 		3CC71D68251370D10037B4E2 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC71D67251370D10037B4E2 /* UserModel.swift */; };
 		D0B7761A36FE6CF3E568497D /* Pods_Talk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06329CBCF006886E86BD80D1 /* Pods_Talk.framework */; };
 /* End PBXBuildFile section */
@@ -47,6 +48,8 @@
 		3C978FDF251A2DB700975862 /* ChatRoomsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomsViewController.swift; sourceTree = "<group>"; };
 		3CABFDF82514854800C256EE /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		3CABFDFD2514868A00C256EE /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
+		3CC1C875251DB77200FF11C4 /* BEMCheckBox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BEMCheckBox.h; sourceTree = "<group>"; };
+		3CC1C876251DBA1200FF11C4 /* SelectFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectFriendViewController.swift; sourceTree = "<group>"; };
 		3CC71D67251370D10037B4E2 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		CED105E283896EE57711F78D /* Pods-Talk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Talk.debug.xcconfig"; path = "Target Support Files/Pods-Talk/Pods-Talk.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -107,6 +110,7 @@
 				3C3BB61D250F5B72007986D7 /* LaunchScreen.storyboard */,
 				3C3BB620250F5B72007986D7 /* Info.plist */,
 				3C3BB628250F6799007986D7 /* RemoteConfigDefaults.plist */,
+				3CC1C875251DB77200FF11C4 /* BEMCheckBox.h */,
 			);
 			path = Talk;
 			sourceTree = "<group>";
@@ -117,6 +121,7 @@
 				3C48DDCC2511E41D00F9F652 /* PeopleViewController.swift */,
 				3C978FDF251A2DB700975862 /* ChatRoomsViewController.swift */,
 				3C5F99DB251C662000E350D3 /* AccountViewController.swift */,
+				3CC1C876251DBA1200FF11C4 /* SelectFriendViewController.swift */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -260,6 +265,7 @@
 				3C978FE0251A2DB700975862 /* ChatRoomsViewController.swift in Sources */,
 				3CC71D68251370D10037B4E2 /* UserModel.swift in Sources */,
 				3CABFDF92514854800C256EE /* ChatViewController.swift in Sources */,
+				3CC1C877251DBA1200FF11C4 /* SelectFriendViewController.swift in Sources */,
 				3C3BB617250F5B70007986D7 /* ViewController.swift in Sources */,
 				3C3BB613250F5B70007986D7 /* AppDelegate.swift in Sources */,
 				3C48DDCD2511E41D00F9F652 /* PeopleViewController.swift in Sources */,
@@ -421,6 +427,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jhstudio.Talk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = Talk/BEMCheckBox.h;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -441,6 +448,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jhstudio.Talk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = Talk/BEMCheckBox.h;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

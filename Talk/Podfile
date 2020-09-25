@@ -1,4 +1,5 @@
 # Uncomment the next line to define a global platform for your project
+
 # platform :ios, '9.0'
 
 target 'Talk' do
@@ -18,5 +19,6 @@ pod 'Firebase/Auth'
 pod 'Firebase/Storage'
 pod 'ObjectMapper', '~> 4.2'
 pod 'Kingfisher', '~> 5.15'
+pod 'BEMCheckBox'
 
 end

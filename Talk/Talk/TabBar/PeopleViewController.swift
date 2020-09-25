@@ -34,6 +34,7 @@ class PeopleViewController: UIViewController,UITableViewDataSource,UITableViewDe
             m.bottom.left.right.equalTo(view)
         }
 
+        //유저에 대한 정보를 가져옴
         Database.database().reference().child("users").observe(DataEventType.value) { (snapshot) in
             
             //중복되는것을 제거하는코드
@@ -61,8 +62,20 @@ class PeopleViewController: UIViewController,UITableViewDataSource,UITableViewDe
             
         }
         
+        var selectFriendButton : UIButton = UIButton()
+        view.addSubview(selectFriendButton)
+        selectFriendButton.snp.makeConstraints { (m) in
+            m.bottom.equalTo(view).offset(-70)
+            m.right.equalTo(view).offset(-20)
+        }
+        selectFriendButton.backgroundColor = UIColor.black
+        selectFriendButton.addTarget(self, action: #selector(showSelectFriendController), for: .touchUpInside)
+        
         
         // Do any additional setup after loading the view.
+    }
+    @objc func showSelectFriendController(){
+        self.performSegue(withIdentifier: "SelectFriendSegue", sender: nil)
     }
     //테이블 생성
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

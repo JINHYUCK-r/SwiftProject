@@ -35,14 +35,15 @@ class ChatRoomsViewController: UIViewController, UITableViewDataSource, UITableV
         func getChatroomsList(){
           Database.database().reference().child("chatrooms").queryOrdered(byChild: "users/"+uid!).queryEqual(toValue: true).observeSingleEvent(of: DataEventType.value, with: {(datasnapshot) in
                     
+            //데이터가 새로 불러와질때 중복해서 쌓이지않도록 해줌
+            self.chatrooms.removeAll()
                     for item in datasnapshot.children.allObjects as! [DataSnapshot]{
-                         //데이터가 새로 불러와질때 중복해서 쌓이지않도록 해줌
-                        self.chatrooms.removeAll()
                         if let chatroomdic = item.value as? [String:AnyObject]{
                             let chatModel = ChatModel(JSON: chatroomdic)
                             self.keys.append(item.key)
                             self.chatrooms.append(chatModel!)
                         }
+                        
                         
                     }
                     self.tableview.reloadData()

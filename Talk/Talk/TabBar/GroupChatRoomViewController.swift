@@ -19,6 +19,7 @@ class GroupChatRoomViewController: UIViewController, UITableViewDelegate, UITabl
     var destinationRoom : String?
     var uid : String?
     var users : [String:AnyObject]?
+    var peopleCount : Int?
     
     var databaseRef : DatabaseReference?
     var observe : UInt?
@@ -63,7 +64,7 @@ class GroupChatRoomViewController: UIViewController, UITableViewDelegate, UITabl
                            view.label_timestamp.text = time.toDayTime
                          }
                        
-                       //setReadCount(label: view.label_read_counter, position: indexPath.row)
+                       setReadCount(label: view.label_read_counter, position: indexPath.row)
                          
                          return view
                          
@@ -87,7 +88,7 @@ class GroupChatRoomViewController: UIViewController, UITableViewDelegate, UITabl
                        view.imageview_profile.clipsToBounds = true
                        view.imageview_profile.kf.setImage(with: url)
                        
-                       //setReadCount(label: view.label_read_counter, position: indexPath.row)
+                       setReadCount(label: view.label_read_counter, position: indexPath.row)
                        
                          return view
                          
@@ -133,7 +134,7 @@ class GroupChatRoomViewController: UIViewController, UITableViewDelegate, UITabl
                     self.tableview.reloadData()
                     
                     if self.comments.count > 0{
-                        self.tableview.scrollToRow(at: IndexPath(item:self.comments.count - 1,section:0), at: UITableView.ScrollPosition.bottom, animated: true)
+                        self.tableview.scrollToRow(at: IndexPath(item:self.comments.count - 1,section:0), at: UITableView.ScrollPosition.bottom, animated: false)
                         
                     }
                 }
@@ -145,6 +146,37 @@ class GroupChatRoomViewController: UIViewController, UITableViewDelegate, UITabl
             })
             
         }
+    
+    func setReadCount(label:UILabel?, position: Int?){
+        let readCount = self.comments[position!].readUsers.count
+        if(peopleCount == nil){
+            
+        
+        Database.database().reference().child("chatrooms").child(destinationRoom!).child("users").observeSingleEvent(of: DataEventType.value, with:     {(DataSnapshot) in
+            
+            let dic = DataSnapshot.value as! [String:Any]
+            self.peopleCount = dic.count
+            let noReadCount = self.peopleCount! - readCount
+            if(noReadCount > 0){
+                           label?.isHidden = false
+                           label?.text = String(noReadCount)
+                       }else{
+                           label?.isHidden = true
+                       }
+            
+           
+        })
+        }else{
+            let noReadCount = self.peopleCount! - readCount
+            if(noReadCount > 0){
+                label?.isHidden = false
+                label?.text = String(noReadCount)
+            }else{
+                label?.isHidden = true
+            }
+            
+        }
+    }
 
         override func didReceiveMemoryWarning() {
             super.didReceiveMemoryWarning()

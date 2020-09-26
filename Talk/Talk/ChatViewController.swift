@@ -114,10 +114,11 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                     "timestamp" : ServerValue.timestamp()
             ]
             
-            Database.database().reference().child("chatrooms").child(chatRoomUid!).child("comments").childByAutoId().setValue(value) { (err, ref) in
-                self.textField_message.text! = ""
+           Database.database().reference().child("chatrooms").child(chatRoomUid!).child("comments").childByAutoId().setValue(value, withCompletionBlock: { (err, ref) in
+                   
+            self.textField_message.text = ""
+                })
             }
-        }
        
     }
     
@@ -181,6 +182,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             
         }
     }
+    
     //메세지를 받을때
      func getMessageList(){
           databaseRef = Database.database().reference().child("chatrooms").child(self.chatRoomUid!).child("comments")
@@ -242,8 +244,9 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     }
     */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        comments.count
+        return comments.count
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
           //uid를 확인하여 나의 메세지셀에 보여주거나 상대방의 메세지 셀을 보여줌
           //내가 보낸 메세지

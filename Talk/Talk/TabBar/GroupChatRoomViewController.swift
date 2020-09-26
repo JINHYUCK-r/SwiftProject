@@ -18,6 +18,7 @@ class GroupChatRoomViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var tableview: UITableView!
     var destinationRoom : String?
     var uid : String?
+    var users : [String:AnyObject]?
     
     var databaseRef : DatabaseReference?
     var observe : UInt?
@@ -27,7 +28,7 @@ class GroupChatRoomViewController: UIViewController, UITableViewDelegate, UITabl
             super.viewDidLoad()
             uid = Auth.auth().currentUser?.uid
             Database.database().reference().child("users").observeSingleEvent(of: DataEventType.value, with: {(datasnapshot) in
-                let dic = datasnapshot.value as! [String:AnyObject]
+                self.users = datasnapshot.value as! [String:AnyObject]
                 
             })
             button_send.addTarget(self, action: #selector(sendMessage), for: .touchUpInside)
@@ -51,18 +52,47 @@ class GroupChatRoomViewController: UIViewController, UITableViewDelegate, UITabl
         }
         
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let view = tableView.dequeueReusableCell(withIdentifier: "MyMessageCell", for: indexPath) as! MyMessageCell
-            view.label_message.text = self.comments[indexPath.row].message
-            view.label_message.numberOfLines = 0
-            
-            if let time = self.comments[indexPath.row].timestamp{
-                view.label_timestamp.text = time.toDayTime
-            }
-            
-            
-            //setReadCount(label: view.label_read_counter, position: indexPath.row)
-            
-            return view
+            //내가 보낸 메세지
+                     if(self.comments[indexPath.row].uid == uid){
+                         let view = tableView.dequeueReusableCell(withIdentifier: "MyMessageCell", for: indexPath) as! MyMessageCell
+                         view.label_message.text = self.comments[indexPath.row].message
+                         view.label_message.numberOfLines = 0
+                         
+                        //내가 보낸 시간을 찍어주는 코드
+                          if let time = self.comments[indexPath.row].timestamp{
+                           view.label_timestamp.text = time.toDayTime
+                         }
+                       
+                       //setReadCount(label: view.label_read_counter, position: indexPath.row)
+                         
+                         return view
+                         
+                     }else{
+                        let destinationUser = users![self.comments[indexPath.row].uid!]
+                         //상대방이 보내준 메세지
+                         let view = tableView.dequeueReusableCell(withIdentifier: "DestinationMessageCell", for: indexPath) as! DestinationMessageCell
+                        view.label_name.text = destinationUser!["userName"] as! String
+                         view.label_message.text = self.comments[indexPath.row].message
+                         view.label_message.numberOfLines = 0;
+                       
+                        let imageUrl = destinationUser!["profileImageUrl"]  as! String
+                       //상대가 보낸 시간을 찍어주는 코드
+                       if let time = self.comments[indexPath.row].timestamp{
+                                                           view.label_timestamp.text = time.toDayTime
+                                                       }
+                         
+                        let url = URL(string:(imageUrl))
+                       //이미지를 동그랗게 만들어주는 코드
+                       view.imageview_profile.layer.cornerRadius = view.imageview_profile.frame.width/2
+                       view.imageview_profile.clipsToBounds = true
+                       view.imageview_profile.kf.setImage(with: url)
+                       
+                       //setReadCount(label: view.label_read_counter, position: indexPath.row)
+                       
+                         return view
+                         
+                     }
+                     return UITableViewCell()
         }
     //챗뷰컨트롤러에서 사용한것 재사용
         func getMessageList(){

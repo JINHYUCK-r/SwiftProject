@@ -64,64 +64,63 @@ class ChatRoomsViewController: UIViewController, UITableViewDataSource, UITableV
             let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for:indexPath) as! CustomCell
                   
                   var destinationUid :String?
-                  
-                  for item in chatrooms[indexPath.row].users{
-                      if(item.key != self.uid){
-                          destinationUid = item.key
-                          destinationUsers.append(destinationUid!)
-                      }
-                  }
+            
+                        for item in chatrooms[indexPath.row].users{
+                            if(item.key != self.uid){
+                                destinationUid = item.key
+                                destinationUsers.append(destinationUid!)
+                            }
+                        }
         //채팅방에서 상대방의 uid에 접근해서 상대방의 정보를 받아옴
-                  Database.database().reference().child("users").child(destinationUid!).observeSingleEvent(of: DataEventType.value, with: {
-                      (datasnapshot) in
+              Database.database().reference().child("users").child(destinationUid!).observeSingleEvent(of: DataEventType.value, with: {
+                          (datasnapshot) in
+                          
+                          let userModel = UserModel()
+                          userModel.setValuesForKeys(datasnapshot.value as! [String:AnyObject])
+                          
+                          
+                          cell.label_title.text = userModel.userName
+                          let url = URL(string:userModel.profileImageUrl!)
+                          
+                          cell.imageview.layer.cornerRadius = cell.imageview.frame.width/2
+                          cell.imageview.layer.masksToBounds = true
+                          cell.imageview.kf.setImage(with: url)
+                          if(self.chatrooms[indexPath.row].comments.keys.count == 0){
+                              return
+                          }
+                          
+                          let lastMessagekey = self.chatrooms[indexPath.row].comments.keys.sorted(){$0>$1}
+                          cell.label_lastmessage.text = self.chatrooms[indexPath.row].comments[lastMessagekey[0]]?.message
+                          let unixTime = self.chatrooms[indexPath.row].comments[lastMessagekey[0]]?.timestamp
+                          cell.label_timestamp.text = unixTime?.toDayTime
+                          
+                          
+                          
+                      })
                       
-                      let userModel = UserModel()
-                      userModel.setValuesForKeys(datasnapshot.value as! [String:AnyObject])
-                      
-                      
-                      cell.label_title.text = userModel.userName
-                      let url = URL(string:userModel.profileImageUrl!)
-                      
-                      cell.imageview.layer.cornerRadius = cell.imageview.frame.width/2
-                      cell.imageview.layer.masksToBounds = true
-                      cell.imageview.kf.setImage(with: url)
-                      if(self.chatrooms[indexPath.row].comments.keys.count == 0){
-                          return
-                      }
-                      
-                      let lastMessagekey = self.chatrooms[indexPath.row].comments.keys.sorted(){$0>$1}
-                      cell.label_lastmessage.text = self.chatrooms[indexPath.row].comments[lastMessagekey[0]]?.message
-                      let unixTime = self.chatrooms[indexPath.row].comments[lastMessagekey[0]]?.timestamp
-                      cell.label_timestamp.text = unixTime?.toDayTime
                       
                       
                       
-                  })
-                  
-                  
-                  
-                  
-                  return cell
-                  
-                  
-              }
+                      return cell
+                      
+                      
+                  }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
         if(self.destinationUsers[indexPath.row].count > 2){
             
-            let destinationUid = self.destinationUsers[indexPath.row]
+           //let destinationUid = self.destinationUsers[indexPath.row]
             let view = self.storyboard?.instantiateViewController(withIdentifier: "GroupChatRoomViewController") as! GroupChatRoomViewController
             view.destinationRoom = self.keys[indexPath.row]
-            
-            
             self.navigationController?.pushViewController(view, animated: true)
             
         }else{
+            
             let destinationUid = self.destinationUsers[indexPath.row]
             let view = self.storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
             view.destinationUid = destinationUid
-            
             self.navigationController?.pushViewController(view, animated: true)
         }
         
@@ -132,6 +131,12 @@ class ChatRoomsViewController: UIViewController, UITableViewDataSource, UITableV
         override func viewDidAppear(_ animated: Bool) {
             viewDidLoad()
         }
+    override func viewDidDisappear(_ animated: Bool) {
+        viewDidLoad()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        viewDidLoad()
+    }
 
         override func didReceiveMemoryWarning() {
             super.didReceiveMemoryWarning()

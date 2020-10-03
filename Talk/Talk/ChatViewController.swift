@@ -200,39 +200,41 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                   self.comments.append(comment!)
               }
               
-              let nsDic = readUserDic as NSDictionary
-            
-            if(self.comments.last?.readUsers.keys == nil){
-                return
-            }
-              if(!(self.comments.last?.readUsers.keys.contains(self.uid!))!){
-                  
-              
-              datasnapshot.ref.updateChildValues(nsDic as! [AnyHashable : Any], withCompletionBlock: { (err, ref) in
-                  
-                self.tableView.reloadData()
-                  
-                  if self.comments.count > 0{
-                    self.tableView.scrollToRow(at: IndexPath(item: self.comments.count-1, section: 0), at: UITableView.ScrollPosition.bottom, animated: true)
+          let nsDic = readUserDic as NSDictionary
+                        
+                        if(self.comments.last?.readUsers.keys == nil){
+                            return
+                        }
+                        
+                        if(!(self.comments.last?.readUsers.keys.contains(self.uid!))!){
+                            
+                        
+                        datasnapshot.ref.updateChildValues(nsDic as! [AnyHashable : Any], withCompletionBlock: { (err, ref) in
+                            
+                            self.tableView.reloadData()
+                            
+                            if self.comments.count > 0{
+                                self.tableView.scrollToRow(at: IndexPath(item:self.comments.count - 1,section:0), at: UITableView.ScrollPosition.bottom, animated: true)
+                                
+                            }
+                            
+                        })
+                        }else{
+                            self.tableView.reloadData()
+                            
+                            if self.comments.count > 0{
+                                self.tableView.scrollToRow(at: IndexPath(item:self.comments.count - 1,section:0), at: UITableView.ScrollPosition.bottom, animated: true)
+                                
+                            }
+                        }
+                        
+                        
+                        
+                        
+                        
+                    })
+                    
                 }
-                  
-              })
-              }else{
-                  self.tableView.reloadData()
-                  
-                  if self.comments.count > 0{
-                    self.tableView.scrollToRow(at: IndexPath(item: self.comments.count-1, section: 0), at: UITableView.ScrollPosition.bottom, animated: true)
-                      
-                  }
-              }
-              
-              
-              
-              
-              
-          })
-          
-      }
       
     /*
     // MARK: - Navigation

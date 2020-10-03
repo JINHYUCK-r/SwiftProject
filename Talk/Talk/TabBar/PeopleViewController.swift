@@ -70,6 +70,7 @@ class PeopleViewController: UIViewController,UITableViewDataSource,UITableViewDe
             m.width.height.equalTo(50)
         }
         selectFriendButton.backgroundColor = UIColor.black
+        selectFriendButton.setTitle("그룹", for: .normal)
         selectFriendButton.addTarget(self, action: #selector(showSelectFriendController), for: .touchUpInside)
         //width값의 절반을 주면 동그랗게 됨
         selectFriendButton.layer.cornerRadius = 25

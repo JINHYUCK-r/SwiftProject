@@ -10,6 +10,8 @@ import UIKit
 
 class ListViewController: UITableViewController {
     
+    var page = 1
+    
     /*
     var dataset = [
         ("다크 나이트","영웅물","2008-09-04",8.95,"darknight.jpg"),
@@ -36,6 +38,17 @@ class ListViewController: UITableViewController {
         return datalist
     }()
  
+    @IBOutlet weak var moreBtn: UIButton!
+    
+    @IBAction func more(_ sender: Any) {
+        self.page += 1
+        
+        self.callMovieAPI()
+        self.tableView.reloadData()
+
+        
+        
+    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.list.count
@@ -78,8 +91,25 @@ class ListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.callMovieAPI()
+        
+        
+    }
+    
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
+    func callMovieAPI(){
+        
         //url을 읽어올때 오류가 발생할수도 있음.  ATS규칙때문임. info.list에서 sourcecode를 열어서 코드추가 필요
-        let url = "http://swiftapi.rubypaper.co.kr:2029/hoppin/movies?version=1&page=1&count=10&genreId=&order=releasedateasc"
+        let url = "http://swiftapi.rubypaper.co.kr:2029/hoppin/movies?version=1&page=\(self.page)&count=10&genreId=&order=releasedateasc"
         let apiURI : URL! = URL(string: url)
         
         let apidata = try! Data(contentsOf: apiURI)
@@ -97,6 +127,7 @@ class ListViewController: UITableViewController {
             let hoppin = apiDictionary["hoppin"] as! NSDictionary
             let movies = hoppin["movies"] as! NSDictionary
             let movie = movies["movie"] as! NSArray
+           
             
             for row in movie {
                 let r = row as! NSDictionary
@@ -109,21 +140,16 @@ class ListViewController: UITableViewController {
                 
                 self.list.append(mvo)
             }
-            
-            
-        }catch{}
-        
+            //총 데이터 갯수를 불어옴
+            let totalCount = (hoppin["totalCount"] as? NSString)!.integerValue
+            //갯수가 데이터 갯수보다 크거나 같으면 버튼을 숨긴다.
+                if(self.list.count >= totalCount){
+                    self.moreBtn.isHidden = true
+                }
+        }catch{
+            NSLog("Parse Error!")
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }

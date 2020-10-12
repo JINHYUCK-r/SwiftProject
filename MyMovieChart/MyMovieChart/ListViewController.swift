@@ -68,6 +68,7 @@ class ListViewController: UITableViewController {
         opendate?.text = row.opendate
         rating?.text = "\(row.rating!)"
         */
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell") as! MovieCell
         cell.title.text = row.title
         cell.desc.text = row.description
@@ -78,8 +79,16 @@ class ListViewController: UITableViewController {
         let imageData = try! Data(contentsOf: url)
         cell.thumnail.image = UIImage(data: imageData)
         */
-        //위에것을 한줄로 적은것
-        cell.thumnail.image = UIImage(data: try! Data(contentsOf: URL(string: row.thumnail!)!))
+        //위에것을 한줄로 적은것. 셀을 만들때마다 이미지를 불러오면 로딩시간이 길어진다. 이미지를 저장해놓고 불러오는 식으로 사용해야 효율이 좋다
+        //cell.thumnail.image = UIImage(data: try! Data(contentsOf: URL(string: row.thumnail!)!))
+        //cell.thumnail.image = row.thumnailImage
+        
+        //비동기 방식으로 섬네일 이미지를 읽어옴
+        DispatchQueue.main.async(execute: {
+            cell.thumnail.image = self.getThumbnailImage(indexPath.row)
+        })
+        
+        
         
         return cell
     }
@@ -137,6 +146,11 @@ class ListViewController: UITableViewController {
                 mvo.thumnail = r["thumbnailImage"] as? String
                 mvo.detail = r["linkUrl"] as? String
                 mvo.rating = ((r["ratingAverage"] as? NSString)?.doubleValue)
+              
+             //그냥 이렇게 이미지를 받아오면 이미지의 용량이 클경우 이미지를 다 받아오기전까지 다른것을 하지 못하면 블로킹현상이 발생할수있다.
+                let url : URL! = URL(string: mvo.thumnail!)
+                let imageData = try! Data(contentsOf: url)
+                mvo.thumnailImage = UIImage(data: imageData)
                 
                 self.list.append(mvo)
             }
@@ -149,6 +163,22 @@ class ListViewController: UITableViewController {
         }catch{
             NSLog("Parse Error!")
         }
+    }
+    
+    func getThumbnailImage(_ index : Int) -> UIImage{
+        let mvo = self.list[index]
+        
+        if let savedImage = mvo.thumnailImage{
+            return savedImage
+            
+        }else{
+            let url : URL! = URL(string: mvo.thumnail!)
+            let imageData = try! Data(contentsOf: url)
+            mvo.thumnailImage = UIImage(data: imageData)
+            
+            return mvo.thumnailImage!
+        }
+      
     }
     
     

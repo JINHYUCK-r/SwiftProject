@@ -95,7 +95,7 @@ class ListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        NSLog("선택된 행은 \(indexPath.row)입니다.")
+        //NSLog("선택된 행은 \(indexPath.row)입니다.")
     }
 
     override func viewDidLoad() {

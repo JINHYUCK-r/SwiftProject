@@ -112,6 +112,11 @@
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="GXo-Md-P70">
+                                <rect key="frame" x="189" y="430" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -124,12 +129,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="2SY-R6-T9S"/>
                     <connections>
+                        <outlet property="spinner" destination="GXo-Md-P70" id="3ep-MI-WRL"/>
                         <outlet property="wv" destination="RHw-EE-Y6a" id="nSe-Vr-p3L"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4J8-lq-2jA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1784" y="118"/>
+            <point key="canvasLocation" x="1782.608695652174" y="117.85714285714285"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zAo-Ik-wrJ">

@@ -50,6 +50,7 @@ class ListViewController: UITableViewController {
         
     }
     
+    //오버라이드를 붙인이유는 테이블뷰컨트롤러를 상속받았기때문에 우리가 원하는대로 재정의해서 사용해야 하기 때문
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.list.count
     }
@@ -181,5 +182,20 @@ class ListViewController: UITableViewController {
       
     }
     
-    
 }
+//화면전환시 세그를 이용한 값넘겨주기
+extension ListViewController{
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //세그웨이 식별
+         if segue.identifier == "segue_detail"{
+            //사용자가 클릭한 행
+            //sender에 사용자가 선택한 cell의 정보가 담김
+            //밑의 indexpath메소드는 선택된 셀이 몇번째 셀인지 알게해주는 메소드
+             let path = self.tableView.indexPath(for: sender as! MovieCell)
+             //목적지 뷰컨트롤러를 생성
+             let detailVC = segue.destination as? DetailViewController
+            //선택된 행의 정보를 detailVC에 담는다
+             detailVC?.mvo = self.list[path!.row]
+         }
+     }
+ }

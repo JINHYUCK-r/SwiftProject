@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -77,6 +78,7 @@
                                     <outlet property="rating" destination="3qq-F2-yIY" id="Y5U-P6-r8f"/>
                                     <outlet property="thumnail" destination="Xxa-xP-Fw8" id="bqc-dH-av8"/>
                                     <outlet property="title" destination="2G9-r1-FbG" id="TWV-Pd-2ex"/>
+                                    <segue destination="X5K-z6-g7C" kind="show" identifier="segue_detail" id="yNS-r7-c9N"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -93,6 +95,41 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Qq-ds-J1q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1031.8840579710145" y="117.85714285714285"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="Au2-Td-uUU">
+            <objects>
+                <viewController id="X5K-z6-g7C" customClass="DetailViewController" customModule="MyMovieChart" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sRU-MG-ITX">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RHw-EE-Y6a">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="3Rm-JI-1fE" firstAttribute="bottom" secondItem="RHw-EE-Y6a" secondAttribute="bottom" id="AoE-78-lgb"/>
+                            <constraint firstItem="3Rm-JI-1fE" firstAttribute="trailing" secondItem="RHw-EE-Y6a" secondAttribute="trailing" id="CDQ-rJ-nlb"/>
+                            <constraint firstItem="RHw-EE-Y6a" firstAttribute="leading" secondItem="3Rm-JI-1fE" secondAttribute="leading" id="GCM-KY-HMC"/>
+                            <constraint firstItem="RHw-EE-Y6a" firstAttribute="top" secondItem="3Rm-JI-1fE" secondAttribute="top" id="RMG-nN-nWo"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="3Rm-JI-1fE"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="2SY-R6-T9S"/>
+                    <connections>
+                        <outlet property="wv" destination="RHw-EE-Y6a" id="nSe-Vr-p3L"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4J8-lq-2jA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1784" y="118"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zAo-Ik-wrJ">

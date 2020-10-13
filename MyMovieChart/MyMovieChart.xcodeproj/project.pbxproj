@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C5CF4772535860800C74A6C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5CF4762535860800C74A6C /* DetailViewController.swift */; };
+		3C5CF47A25358C0500C74A6C /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C5CF47925358C0500C74A6C /* WebKit.framework */; };
 		3C5EF55F252AFD2D00977504 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5EF55E252AFD2D00977504 /* AppDelegate.swift */; };
 		3C5EF561252AFD2D00977504 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5EF560252AFD2D00977504 /* SceneDelegate.swift */; };
 		3C5EF563252AFD2D00977504 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5EF562252AFD2D00977504 /* ViewController.swift */; };
@@ -22,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3C5CF4762535860800C74A6C /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		3C5CF47925358C0500C74A6C /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		3C5EF55B252AFD2D00977504 /* MyMovieChart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyMovieChart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C5EF55E252AFD2D00977504 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3C5EF560252AFD2D00977504 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,17 +47,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C5CF47A25358C0500C74A6C /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3C5CF47825358C0500C74A6C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3C5CF47925358C0500C74A6C /* WebKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3C5EF552252AFD2D00977504 = {
 			isa = PBXGroup;
 			children = (
 				3C5EF55D252AFD2D00977504 /* MyMovieChart */,
 				3C5EF55C252AFD2D00977504 /* Products */,
+				3C5CF47825358C0500C74A6C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,6 +85,7 @@
 				3C5EF578252B0E3000977504 /* Resources */,
 				3C5EF55E252AFD2D00977504 /* AppDelegate.swift */,
 				3C5EF560252AFD2D00977504 /* SceneDelegate.swift */,
+				3C5CF4762535860800C74A6C /* DetailViewController.swift */,
 				3C5EF572252AFDAF00977504 /* ListViewController.swift */,
 				3C5EF562252AFD2D00977504 /* ViewController.swift */,
 				3C5EF564252AFD2D00977504 /* Main.storyboard */,
@@ -173,6 +188,7 @@
 				3C5EF573252AFDAF00977504 /* ListViewController.swift in Sources */,
 				3C5EF561252AFD2D00977504 /* SceneDelegate.swift in Sources */,
 				3C5EF575252AFFCE00977504 /* MovieVO.swift in Sources */,
+				3C5CF4772535860800C74A6C /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

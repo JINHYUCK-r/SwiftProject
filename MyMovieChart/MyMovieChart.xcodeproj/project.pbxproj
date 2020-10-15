@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C4B67F62538225D0004C1A4 /* Listbullets.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C4B67F52538225D0004C1A4 /* Listbullets.png */; };
+		3C4B67F8253822640004C1A4 /* Trailer.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C4B67F7253822640004C1A4 /* Trailer.png */; };
+		3C4B67FA253824B40004C1A4 /* TheaterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4B67F9253824B40004C1A4 /* TheaterCell.swift */; };
+		3C4B67FC2538254F0004C1A4 /* TheaterListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4B67FB2538254F0004C1A4 /* TheaterListController.swift */; };
 		3C5CF4772535860800C74A6C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5CF4762535860800C74A6C /* DetailViewController.swift */; };
 		3C5CF47A25358C0500C74A6C /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C5CF47925358C0500C74A6C /* WebKit.framework */; };
 		3C5EF55F252AFD2D00977504 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5EF55E252AFD2D00977504 /* AppDelegate.swift */; };
@@ -24,6 +28,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3C4B67F52538225D0004C1A4 /* Listbullets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Listbullets.png; path = "../../../../기본편공식예제/MyMovieChart-Tabbar/Resources/Listbullets.png"; sourceTree = "<group>"; };
+		3C4B67F7253822640004C1A4 /* Trailer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Trailer.png; path = "../../../../기본편공식예제/MyMovieChart-Tabbar/Resources/Trailer.png"; sourceTree = "<group>"; };
+		3C4B67F9253824B40004C1A4 /* TheaterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheaterCell.swift; sourceTree = "<group>"; };
+		3C4B67FB2538254F0004C1A4 /* TheaterListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheaterListController.swift; sourceTree = "<group>"; };
 		3C5CF4762535860800C74A6C /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		3C5CF47925358C0500C74A6C /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		3C5EF55B252AFD2D00977504 /* MyMovieChart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyMovieChart.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,6 +95,7 @@
 				3C5EF560252AFD2D00977504 /* SceneDelegate.swift */,
 				3C5CF4762535860800C74A6C /* DetailViewController.swift */,
 				3C5EF572252AFDAF00977504 /* ListViewController.swift */,
+				3C4B67FB2538254F0004C1A4 /* TheaterListController.swift */,
 				3C5EF562252AFD2D00977504 /* ViewController.swift */,
 				3C5EF564252AFD2D00977504 /* Main.storyboard */,
 				3C5EF567252AFD2F00977504 /* Assets.xcassets */,
@@ -94,6 +103,7 @@
 				3C5EF56C252AFD2F00977504 /* Info.plist */,
 				3C5EF574252AFFCE00977504 /* MovieVO.swift */,
 				3C5EF576252B0B4D00977504 /* MovieCell.swift */,
+				3C4B67F9253824B40004C1A4 /* TheaterCell.swift */,
 			);
 			path = MyMovieChart;
 			sourceTree = "<group>";
@@ -101,7 +111,9 @@
 		3C5EF578252B0E3000977504 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3C4B67F52538225D0004C1A4 /* Listbullets.png */,
 				3C5EF57A252B0EC300977504 /* darknight.jpg */,
+				3C4B67F7253822640004C1A4 /* Trailer.png */,
 				3C5EF57B252B0EC300977504 /* rain.jpg */,
 				3C5EF579252B0EC300977504 /* secret.jpg */,
 			);
@@ -166,6 +178,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C4B67F62538225D0004C1A4 /* Listbullets.png in Resources */,
+				3C4B67F8253822640004C1A4 /* Trailer.png in Resources */,
 				3C5EF56B252AFD2F00977504 /* LaunchScreen.storyboard in Resources */,
 				3C5EF57E252B0EC300977504 /* rain.jpg in Resources */,
 				3C5EF568252AFD2F00977504 /* Assets.xcassets in Resources */,
@@ -183,9 +197,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C5EF563252AFD2D00977504 /* ViewController.swift in Sources */,
+				3C4B67FA253824B40004C1A4 /* TheaterCell.swift in Sources */,
 				3C5EF55F252AFD2D00977504 /* AppDelegate.swift in Sources */,
 				3C5EF577252B0B4D00977504 /* MovieCell.swift in Sources */,
 				3C5EF573252AFDAF00977504 /* ListViewController.swift in Sources */,
+				3C4B67FC2538254F0004C1A4 /* TheaterListController.swift in Sources */,
 				3C5EF561252AFD2D00977504 /* SceneDelegate.swift in Sources */,
 				3C5EF575252AFFCE00977504 /* MovieVO.swift in Sources */,
 				3C5CF4772535860800C74A6C /* DetailViewController.swift in Sources */,

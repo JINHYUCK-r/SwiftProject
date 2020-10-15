@@ -15,6 +15,13 @@ class TheaterListController : UITableViewController{
     
     var startPoint = 0
     
+    @IBAction func more(_ sender: Any) {
+        //self.startPoint += 20
+        self.callTheaterAPI()
+        self.tableView.reloadData()
+        
+    }
+    
     override func viewDidLoad(){
         self.callTheaterAPI()
     }

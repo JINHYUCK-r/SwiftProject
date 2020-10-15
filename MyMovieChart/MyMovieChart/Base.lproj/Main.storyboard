@@ -154,6 +154,7 @@
                                     <outlet property="addr" destination="IhP-y7-Glg" id="2yw-uT-F4c"/>
                                     <outlet property="name" destination="orB-CP-r1L" id="CFw-kh-FAR"/>
                                     <outlet property="tel" destination="RJC-aS-jeT" id="03r-dl-8wz"/>
+                                    <segue destination="MVY-YI-UhV" kind="show" identifier="segue_map" id="F7A-bC-6iT"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -167,6 +168,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZBk-ef-ySY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1965.217391304348" y="808.92857142857144"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="YyQ-T1-Xai">
+            <objects>
+                <viewController id="MVY-YI-UhV" customClass="TheaterViewController" customModule="MyMovieChart" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LFE-Zw-1ip">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DRg-dQ-tZ9">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="DRg-dQ-tZ9" firstAttribute="leading" secondItem="XOa-fS-MVC" secondAttribute="leading" id="IHr-lO-Y8p"/>
+                            <constraint firstItem="XOa-fS-MVC" firstAttribute="trailing" secondItem="DRg-dQ-tZ9" secondAttribute="trailing" id="L2z-c7-ZUT"/>
+                            <constraint firstItem="DRg-dQ-tZ9" firstAttribute="top" secondItem="XOa-fS-MVC" secondAttribute="top" id="Riu-YT-5eu"/>
+                            <constraint firstItem="XOa-fS-MVC" firstAttribute="bottom" secondItem="DRg-dQ-tZ9" secondAttribute="bottom" id="dqi-qI-LLc"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="XOa-fS-MVC"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="pCh-i6-w76"/>
+                    <connections>
+                        <outlet property="map" destination="DRg-dQ-tZ9" id="TEv-7u-xI1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Exq-nv-X8J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2703" y="812"/>
         </scene>
         <!--영화관-->
         <scene sceneID="OyP-gO-p1o">

@@ -11,6 +11,8 @@
 		3C4B67F8253822640004C1A4 /* Trailer.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C4B67F7253822640004C1A4 /* Trailer.png */; };
 		3C4B67FA253824B40004C1A4 /* TheaterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4B67F9253824B40004C1A4 /* TheaterCell.swift */; };
 		3C4B67FC2538254F0004C1A4 /* TheaterListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4B67FB2538254F0004C1A4 /* TheaterListController.swift */; };
+		3C4B67FE253830A40004C1A4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C4B67FD253830A40004C1A4 /* MapKit.framework */; };
+		3C4B6800253832AF0004C1A4 /* TheaterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4B67FF253832AF0004C1A4 /* TheaterViewController.swift */; };
 		3C5CF4772535860800C74A6C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5CF4762535860800C74A6C /* DetailViewController.swift */; };
 		3C5CF47A25358C0500C74A6C /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C5CF47925358C0500C74A6C /* WebKit.framework */; };
 		3C5EF55F252AFD2D00977504 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5EF55E252AFD2D00977504 /* AppDelegate.swift */; };
@@ -32,6 +34,8 @@
 		3C4B67F7253822640004C1A4 /* Trailer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Trailer.png; path = "../../../../기본편공식예제/MyMovieChart-Tabbar/Resources/Trailer.png"; sourceTree = "<group>"; };
 		3C4B67F9253824B40004C1A4 /* TheaterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheaterCell.swift; sourceTree = "<group>"; };
 		3C4B67FB2538254F0004C1A4 /* TheaterListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheaterListController.swift; sourceTree = "<group>"; };
+		3C4B67FD253830A40004C1A4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		3C4B67FF253832AF0004C1A4 /* TheaterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheaterViewController.swift; sourceTree = "<group>"; };
 		3C5CF4762535860800C74A6C /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		3C5CF47925358C0500C74A6C /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		3C5EF55B252AFD2D00977504 /* MyMovieChart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyMovieChart.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -55,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C4B67FE253830A40004C1A4 /* MapKit.framework in Frameworks */,
 				3C5CF47A25358C0500C74A6C /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -65,6 +70,7 @@
 		3C5CF47825358C0500C74A6C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3C4B67FD253830A40004C1A4 /* MapKit.framework */,
 				3C5CF47925358C0500C74A6C /* WebKit.framework */,
 			);
 			name = Frameworks;
@@ -96,6 +102,7 @@
 				3C5CF4762535860800C74A6C /* DetailViewController.swift */,
 				3C5EF572252AFDAF00977504 /* ListViewController.swift */,
 				3C4B67FB2538254F0004C1A4 /* TheaterListController.swift */,
+				3C4B67FF253832AF0004C1A4 /* TheaterViewController.swift */,
 				3C5EF562252AFD2D00977504 /* ViewController.swift */,
 				3C5EF564252AFD2D00977504 /* Main.storyboard */,
 				3C5EF567252AFD2F00977504 /* Assets.xcassets */,
@@ -204,6 +211,7 @@
 				3C4B67FC2538254F0004C1A4 /* TheaterListController.swift in Sources */,
 				3C5EF561252AFD2D00977504 /* SceneDelegate.swift in Sources */,
 				3C5EF575252AFFCE00977504 /* MovieVO.swift in Sources */,
+				3C4B6800253832AF0004C1A4 /* TheaterViewController.swift in Sources */,
 				3C5CF4772535860800C74A6C /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

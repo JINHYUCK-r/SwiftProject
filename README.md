@@ -25,10 +25,10 @@
  
  
 - 탭바
-* People
-+ tablaview사용 
-+ firebase에 등록된 회원정보를 가져와서 목록으로 보여줌
-+ 사용자 목록이 선택되면 chatview로 이동(ChatViewController)
+ * People
+  + tablaview사용 
+    * firebase에 등록된 회원정보를 가져와서 목록으로 보여줌
+     + 사용자 목록이 선택되면 chatview로 이동(ChatViewController)
   - 여러명 선택시 단체채팅방 생성 view로 이동(SelectFriendViewController)
  * Chat
   - 나와 상대방의 uid를 활용하여 채팅방 데이터베이스를 firebase에 생성

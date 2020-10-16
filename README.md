@@ -1,20 +1,36 @@
 # SwiftProject
 
 [**MyMovieChart**](https://github.com/JINHYUCK-r/SwiftProject/tree/master/MyMovieChart)
-- ImagePicker 사용
-*  버튼을 눌러 이미지 삽입
+ - Framworks 사용
+ Mapkit / Webkit
+ 
+- 탭바
+ - 영화차트
+   - tablaview사용 
+   - API를 이용하여 JSON데이터 활용
+   - 셀 선택시 상제 화면으로 이동(DetailViewController)
+    - prepare 메소드를 이용한 segued의 값 전달
+   - JSON데이터에 담긴 url을 이용하여 웹뷰구성
+   - AlertController 사용하여 오류시 경고창 표시
+ - 영화관
+  - 영화관API를 이용한 데이터 가져오기
+  - JSON 데이터 인코딩하여 원하는 형태로 변형하기 (euc-kr => utf-8)
+  - Mapkit를 사용하여 지도보여주기(TheaterViewController)
+  
 
 
 [**Talk**](https://github.com/JINHYUCK-r/SwiftProject/tree/master/Talk)
 - Pod 설치 활용
+'''
  pod 'Firebase/RemoteConfig'<br>
  pod 'TextFieldEffects'<br>
  pod 'Firebase/Database'<br>
  pod 'Firebase/Auth' <br>
  pod 'Firebase/Storage' <br>
- pod 'ObjectMapper', '~>. 4.2'<br>
- pod 'Kingfisher', '~> 5.15'<br>
- pod 'BEMCheckBox'<br>
+ pod 'ObjectMapper', '~>. 4.2' <br>
+ pod 'Kingfisher', '~> 5.15' <br>
+ pod 'BEMCheckBox' <br>
+ '''
  
 - 로그인창
   - Auth.auth().signIn 메소드를 사용하여 로그인정보확인(아이디와 패스워드 일치여부)

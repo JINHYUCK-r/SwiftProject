@@ -13,9 +13,9 @@
     - JSON데이터에 담긴 url을 이용하여 웹뷰구성
     - AlertController 사용하여 오류시 경고창 표시
    - 영화관
-    - 영화관API를 이용한 데이터 가져오기
-    - JSON 데이터 인코딩하여 원하는 형태로 변형하기 (euc-kr => utf-8)
-   - Mapkit를 사용하여 지도보여주기(TheaterViewController)
+     - 영화관API를 이용한 데이터 가져오기
+     - JSON 데이터 인코딩하여 원하는 형태로 변형하기 (euc-kr => utf-8)
+     - Mapkit를 사용하여 지도보여주기(TheaterViewController)
   
 
 

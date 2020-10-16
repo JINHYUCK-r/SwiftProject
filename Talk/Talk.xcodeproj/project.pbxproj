@@ -13,12 +13,12 @@
 		3C3BB61A250F5B70007986D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C3BB618250F5B70007986D7 /* Main.storyboard */; };
 		3C3BB61C250F5B72007986D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C3BB61B250F5B72007986D7 /* Assets.xcassets */; };
 		3C3BB61F250F5B72007986D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C3BB61D250F5B72007986D7 /* LaunchScreen.storyboard */; };
-		3C3BB627250F5D2F007986D7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C3BB626250F5D2F007986D7 /* GoogleService-Info.plist */; };
 		3C3BB629250F6799007986D7 /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C3BB628250F6799007986D7 /* RemoteConfigDefaults.plist */; };
 		3C48DDCD2511E41D00F9F652 /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C48DDCC2511E41D00F9F652 /* PeopleViewController.swift */; };
 		3C4C75222510888700363D18 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4C75212510888700363D18 /* LoginViewController.swift */; };
 		3C4C752425109A1F00363D18 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4C752325109A1F00363D18 /* SignUpViewController.swift */; };
 		3C5F99DC251C662000E350D3 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5F99DB251C662000E350D3 /* AccountViewController.swift */; };
+		3C66B9C92539762800562942 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C66B9C82539762800562942 /* GoogleService-Info.plist */; };
 		3C978FE0251A2DB700975862 /* ChatRoomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C978FDF251A2DB700975862 /* ChatRoomsViewController.swift */; };
 		3CABFDF92514854800C256EE /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CABFDF82514854800C256EE /* ChatViewController.swift */; };
 		3CABFDFE2514868A00C256EE /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CABFDFD2514868A00C256EE /* ChatModel.swift */; };
@@ -39,13 +39,13 @@
 		3C3BB61B250F5B72007986D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3C3BB61E250F5B72007986D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3C3BB620250F5B72007986D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3C3BB626250F5D2F007986D7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3C3BB628250F6799007986D7 /* RemoteConfigDefaults.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RemoteConfigDefaults.plist; sourceTree = "<group>"; };
 		3C48DDCC2511E41D00F9F652 /* PeopleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleViewController.swift; sourceTree = "<group>"; };
 		3C4C75212510888700363D18 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3C4C752325109A1F00363D18 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		3C4C75252510A91500363D18 /* Talk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Talk.entitlements; sourceTree = "<group>"; };
 		3C5F99DB251C662000E350D3 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		3C66B9C82539762800562942 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3C978FDF251A2DB700975862 /* ChatRoomsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomsViewController.swift; sourceTree = "<group>"; };
 		3CABFDF82514854800C256EE /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		3CABFDFD2514868A00C256EE /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
@@ -101,7 +101,7 @@
 				3C978FDE251A2D2B00975862 /* TabBar */,
 				3CABFDFC2514865500C256EE /* Model */,
 				3C4C75252510A91500363D18 /* Talk.entitlements */,
-				3C3BB626250F5D2F007986D7 /* GoogleService-Info.plist */,
+				3C66B9C82539762800562942 /* GoogleService-Info.plist */,
 				3C3BB612250F5B70007986D7 /* AppDelegate.swift */,
 				3C3BB614250F5B70007986D7 /* SceneDelegate.swift */,
 				3C3BB616250F5B70007986D7 /* ViewController.swift */,
@@ -209,7 +209,7 @@
 			files = (
 				3C3BB61F250F5B72007986D7 /* LaunchScreen.storyboard in Resources */,
 				3C3BB629250F6799007986D7 /* RemoteConfigDefaults.plist in Resources */,
-				3C3BB627250F5D2F007986D7 /* GoogleService-Info.plist in Resources */,
+				3C66B9C92539762800562942 /* GoogleService-Info.plist in Resources */,
 				3C3BB61C250F5B72007986D7 /* Assets.xcassets in Resources */,
 				3C3BB61A250F5B70007986D7 /* Main.storyboard in Resources */,
 			);

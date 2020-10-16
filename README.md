@@ -26,15 +26,15 @@
  
 - 탭바
   - People
-   - tablaview사용 
-   - firebase에 등록된 회원정보를 가져와서 목록으로 보여줌
-   - 사용자 목록이 선택되면 chatview로 이동(ChatViewController)
-   - 여러명 선택시 단체채팅방 생성 view로 이동(SelectFriendViewController)
- * Chat
-  - 나와 상대방의 uid를 활용하여 채팅방 데이터베이스를 firebase에 생성
-  - 가장 최신의 메세지를 맨밑에 표시
-  - 메세지 읽음표시
-  - 메세지 길이에 따른 유동적인 셀크기 조정
-  - toDayTime 메소드를 만들어서 메시지 보낸 시간 표시
+    - tablaview사용 
+    - firebase에 등록된 회원정보를 가져와서 목록으로 보여줌
+    - 사용자 목록이 선택되면 chatview로 이동(ChatViewController)
+    - 여러명 선택시 단체채팅방 생성 view로 이동(SelectFriendViewController)
+ - Chat
+    - 나와 상대방의 uid를 활용하여 채팅방 데이터베이스를 firebase에 생성
+    - 가장 최신의 메세지를 맨밑에 표시
+    - 메세지 읽음표시
+    - 메세지 길이에 따른 유동적인 셀크기 조정
+    - toDayTime 메소드를 만들어서 메시지 보낸 시간 표시
  * Account
   - 상태메세지등록

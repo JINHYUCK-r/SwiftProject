@@ -12,7 +12,13 @@ import CoreData
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    var memolist = [MemoData]() //메모데이터를 저장할 배열 변수 선언
+    //AppDelegate에 저장하는 이유는 앱 전체의 라이프 사이클의 관리하는 앱 델리게이트역할
+    //접근성 : 여러 객체에서 접근하는 공용 저장소 역할
+    //데이터보존 : 메모리 관리 이슈나 객체의 소멸로 사라지지 않아야함
+    //일관성 : 여러곳에서 사용하더라도 일관성있게하기 위함
+    //하지만 앱이 실행되는 동안에만 저장됨 
+    
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.

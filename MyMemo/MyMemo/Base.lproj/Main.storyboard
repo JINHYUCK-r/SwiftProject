@@ -11,7 +11,7 @@
         <scene sceneID="31K-FJ-0SO">
             <objects>
                 <tableViewController id="hlm-AE-Ks3" customClass="MemoListVC" customModule="MyMemo" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="bls-NV-mNA">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="bls-NV-mNA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -68,8 +68,13 @@
                                         <constraint firstAttribute="bottom" secondItem="FiF-r8-wfu" secondAttribute="bottom" constant="10" id="h7n-1j-5mK"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="content" destination="sJs-Km-sLQ" id="0nu-Cf-g3j"/>
+                                    <outlet property="regdate" destination="FiF-r8-wfu" id="gne-P4-Sh7"/>
+                                    <outlet property="subject" destination="t6H-i6-O8g" id="ypo-vB-pNj"/>
+                                </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="memoCellWithImage" rowHeight="80" id="WRm-me-bvm">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="memoCellWithImage" rowHeight="80" id="WRm-me-bvm" customClass="MemoCell" customModule="MyMemo" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="108" width="414" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WRm-me-bvm" id="J0V-0B-MRc">
@@ -125,6 +130,12 @@
                                         <constraint firstItem="Han-dI-lZO" firstAttribute="leading" secondItem="nvu-8y-dCg" secondAttribute="trailing" constant="10" id="yEX-ER-Jdp"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="content" destination="Fno-M3-Yvg" id="hTK-1e-IUs"/>
+                                    <outlet property="img" destination="nvu-8y-dCg" id="Xoa-UO-PKq"/>
+                                    <outlet property="regdate" destination="h0v-a0-9d5" id="PeL-VQ-o5Z"/>
+                                    <outlet property="subject" destination="Han-dI-lZO" id="a64-za-QMQ"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

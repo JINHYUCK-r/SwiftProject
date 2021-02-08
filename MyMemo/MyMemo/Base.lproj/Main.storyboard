@@ -18,7 +18,17 @@
                         <view key="tableFooterView" contentMode="scaleToFill" id="Dgt-CH-Q4Y">
                             <rect key="frame" x="0.0" y="216" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fvE-t9-Uz1" customClass="CSLogButton" customModule="MyMemo" customModuleProvider="target">
+                                    <rect key="frame" x="187.66666666666666" y="7" width="39" height="30"/>
+                                    <state key="normal" title="더보기"/>
+                                </button>
+                            </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <constraints>
+                                <constraint firstItem="fvE-t9-Uz1" firstAttribute="centerX" secondItem="Dgt-CH-Q4Y" secondAttribute="centerX" id="9l3-ic-M56"/>
+                                <constraint firstItem="fvE-t9-Uz1" firstAttribute="centerY" secondItem="Dgt-CH-Q4Y" secondAttribute="centerY" id="pnm-Gk-idT"/>
+                            </constraints>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="memoCell" rowHeight="80" id="v1d-gB-Tco" customClass="MemoCell" customModule="MyMemo" customModuleProvider="target">

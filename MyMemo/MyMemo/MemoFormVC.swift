@@ -18,11 +18,19 @@ class MemoFormVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     
     
     @IBAction func save(_ sender: Any) {
+        //경고창에 넣을 이미지생성
+        let alertV = UIViewController()
+        let iconImage = UIImage(named: "warning-icon-60.png")
+        alertV.view = UIImageView(image: iconImage)
+        alertV.preferredContentSize = iconImage?.size ?? CGSize.zero
+        
         
         //내용을 입력하지않으면 경고창
         guard self.content.text?.isEmpty == false else{
             let alert = UIAlertController(title: nil, message: "내용을 입력해주세요", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            //경고창에 이미지 추가
+            alert.setValue(alertV, forKey: "contentViewController")
             self.present(alert, animated: true)
             return
         }
@@ -54,9 +62,21 @@ class MemoFormVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         
     }
     override func viewDidLoad() {
-        
         self.content.delegate = self
         
+        let bgImage = UIImage(named: "memo-background.png")!
+        self.view.backgroundColor = UIColor(patternImage: bgImage)
+        
+        self.content.layer.borderWidth = 0
+        //uicolor.clear = 색상이 없는 빈공간 만들기
+        self.content.layer.borderColor = UIColor.clear.cgColor
+        self.content.backgroundColor = UIColor.clear
+        
+        let style = NSMutableParagraphStyle()
+        //줄 간격 설정
+        style.lineSpacing = 9
+        //paragraphStyle : 문단 스타일 정의
+        self.content.attributedText = NSAttributedString(string: "", attributes: [.paragraphStyle : style])
     }
     
     //사용자가 이미지를 선택하면 메소드가 호출됨
@@ -77,6 +97,14 @@ class MemoFormVC: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         self.navigationItem.title = self.subject
     }
     
-    
+    //화면을 터치시 네비게이션바가 사라졌다가 나타났다가 함. 단, 텍스트뷰를 선택시에는 안사라짐
+    //스토리보드의 네비게이션컨트롤러의 hide bars를 통해서도 구현할수 있음. 단 효과를 넣거나 할수는 없음
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let bar = self.navigationController?.navigationBar
+        let ts = TimeInterval(0.3)
+        UIView.animate(withDuration: ts){
+            bar?.alpha = (bar?.alpha == 0 ? 1 : 0)
+        }
+    }
     
 }

@@ -193,7 +193,9 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
               var readUserDic : Dictionary<String,AnyObject> = [:]
               for item in datasnapshot.children.allObjects as! [DataSnapshot]{
                   let key = item.key as String
+                //comments에 담길것
                   let comment = ChatModel.Comment(JSON: item.value as! [String:AnyObject])
+                //readUserDic에 담길것
                   let comment_motify = ChatModel.Comment(JSON: item.value as! [String:AnyObject])
                   comment_motify?.readUsers[self.uid!] = true
                   readUserDic[key] = comment_motify?.toJSON() as! NSDictionary
@@ -219,6 +221,7 @@ class ChatViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                             }
                             
                         })
+                        //마지막 메세지uid에 내가 있으면 무한참조를 막을수 있음
                         }else{
                             self.tableView.reloadData()
                             

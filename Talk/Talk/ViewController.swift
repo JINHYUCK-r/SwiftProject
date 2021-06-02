@@ -17,12 +17,13 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        //https://firebase.google.com/docs/remote-config/use-config-ios
+        //싱글톤 원격 구성 객체
         remoteConfig = RemoteConfig.remoteConfig()
         let settings = RemoteConfigSettings()
         settings.minimumFetchInterval = 0
         remoteConfig.configSettings = settings
+        
         //서버랑 연결이 안될경우 사용됨
         remoteConfig.setDefaults(fromPlist: "RemoteConfigDefaults")
         //서버값 받는부분
@@ -53,9 +54,9 @@ class ViewController: UIViewController {
 
     func displayWelcome(){
         //파이어베이스에 설정해놓은 값을 받음
-        let color = remoteConfig["splash_background"].stringValue
-        let caps = remoteConfig["splash_message_caps"].boolValue
-        let message = remoteConfig["splash_message"].stringValue
+        let color = remoteConfig["splash_background"].stringValue //#031CA6
+        let caps = remoteConfig["splash_message_caps"].boolValue //false
+        let message = remoteConfig["splash_message"].stringValue //서버점검중
         
         //firebase에서 caps의 기본값이 true면 앱이 꺼지는 if 문이 실행되어버림
         if(caps){
@@ -74,6 +75,7 @@ class ViewController: UIViewController {
            }
 }
 
+//https://rushndash.tistory.com/90
 //컬러를 hex코드로 쓰기위함
 extension UIColor {
     convenience init(hex: String) {
@@ -85,6 +87,7 @@ extension UIColor {
         
         scanner.scanHexInt64(&rgbValue)
         
+        //비트연산자
         let r = (rgbValue & 0xff0000) >> 16
         let g = (rgbValue & 0xff00) >> 8
         let b = rgbValue & 0xff

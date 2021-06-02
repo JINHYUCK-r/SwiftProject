@@ -119,7 +119,9 @@ class GroupChatRoomViewController: UIViewController, UITableViewDelegate, UITabl
                 var readUserDic : Dictionary<String,AnyObject> = [:]
                 for item in datasnapshot.children.allObjects as! [DataSnapshot]{
                     let key = item.key as String
+                    //comments에 들어갈것
                     let comment = ChatModel.Comment(JSON: item.value as! [String:AnyObject])
+                    //readuserDic에 들어갈것 
                     let comment_motify = ChatModel.Comment(JSON: item.value as! [String:AnyObject])
                     comment_motify?.readUsers[self.uid!] = true
                     readUserDic[key] = comment_motify?.toJSON() as! NSDictionary

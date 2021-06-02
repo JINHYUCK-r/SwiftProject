@@ -100,8 +100,6 @@
 				3C3BB618250F5B70007986D7 /* Main.storyboard */,
 				3C978FDE251A2D2B00975862 /* TabBar */,
 				3CABFDFC2514865500C256EE /* Model */,
-				3C4C75252510A91500363D18 /* Talk.entitlements */,
-				3C66B9C82539762800562942 /* GoogleService-Info.plist */,
 				3C3BB612250F5B70007986D7 /* AppDelegate.swift */,
 				3C3BB614250F5B70007986D7 /* SceneDelegate.swift */,
 				3C3BB616250F5B70007986D7 /* ViewController.swift */,
@@ -113,6 +111,8 @@
 				3C3BB620250F5B72007986D7 /* Info.plist */,
 				3C3BB628250F6799007986D7 /* RemoteConfigDefaults.plist */,
 				3CC1C875251DB77200FF11C4 /* BEMCheckBox.h */,
+				3C4C75252510A91500363D18 /* Talk.entitlements */,
+				3C66B9C82539762800562942 /* GoogleService-Info.plist */,
 			);
 			path = Talk;
 			sourceTree = "<group>";
